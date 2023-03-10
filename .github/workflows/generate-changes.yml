@@ -1,9 +1,6 @@
 name: Generate Change Files
 
 on:
-  push:
-    branches-ignore:
-      - main
   pull_request:
     branches:
       - main
