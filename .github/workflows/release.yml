@@ -42,7 +42,8 @@ jobs:
         run: pnpm install
 
       - name: Run multi semantic release
-        run: alias npm="pnpm"
-        run: pnpm run release
+        run: |
+          alias npm="pnpm"
+          run: pnpm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
