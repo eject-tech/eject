@@ -1,0 +1,22 @@
+{
+  "name": "@eject/interface",
+  "version": "0.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@fastify/type-provider-typebox": "^2.4.0",
+    "@sinclair/typebox": "^0.25.24",
+    "@types/node": "^18.14.6",
+    "fastify": "^4.14.1",
+    "fastify-plugin": "^4.5.0"
+  },
+  "devDependencies": {
+    "@eject/config": "workspace:*",
+    "typescript": "^4.9.5"
+  }
+}
