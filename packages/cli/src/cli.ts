@@ -26,7 +26,7 @@ import { createCLI } from "soly";
   cli.action(() => {
     return () => {
       console.error(
-        "Unknown command, use `ejectjs help` to see a list of commands."
+        "Unknown command, use `eject help` to see a list of commands."
       );
     };
   });

@@ -1,12 +1,12 @@
 {
   "name": "@eject/cli",
   "version": "0.0.0",
-  "main": "./build/compiler.js",
-  "types": "./build/compiler.d.ts",
+  "main": "./build/cli.js",
+  "types": "./build/cli.d.ts",
   "license": "MIT",
   "bin": {
-    "@eject/cli": "bin/ejectjs",
-    "ejectjs": "bin/ejectjs"
+    "@eject/cli": "bin/eject",
+    "eject": "bin/eject"
   },
   "scripts": {
     "build": "tsc",
