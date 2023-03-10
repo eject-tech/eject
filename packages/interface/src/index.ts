@@ -1,13 +1,28 @@
 import path from "path";
-import { api, loadRoutes } from "./api";
+import eject from "@eject/fastify";
+import fastify from "fastify";
+import {
+  TypeBoxTypeProvider,
+  TypeBoxValidatorCompiler,
+} from "@fastify/type-provider-typebox";
 
 // Build an API
 const start = async () => {
-  // Change plugin to own package
-  api.register(loadRoutes, {
+  // Create Fastify application
+  const api = fastify({
+    logger: true,
+    ignoreTrailingSlash: true,
+  })
+    .withTypeProvider<TypeBoxTypeProvider>()
+    .setValidatorCompiler(TypeBoxValidatorCompiler);
+
+  // Register Eject routes plugin
+  api.register(eject.routes, {
     // prefix: "/api",
     dir: path.join(__dirname, "routes"),
   });
+
+  api.register(eject.hooks);
 
   try {
     await api.listen({ port: parseInt(process.env.PORT || "3000") });

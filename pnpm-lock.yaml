@@ -59,18 +59,18 @@ importers:
   packages/interface:
     specifiers:
       '@eject/config': workspace:*
+      '@eject/fastify': workspace:*
       '@fastify/type-provider-typebox': ^2.4.0
       '@sinclair/typebox': ^0.25.24
       '@types/node': ^18.14.6
       fastify: ^4.14.1
-      fastify-plugin: ^4.5.0
       typescript: ^4.9.5
     dependencies:
+      '@eject/fastify': link:../../integrations/fastify
       '@fastify/type-provider-typebox': 2.4.0_naatsb2dmwxq3j32xoqzjtyzqm
       '@sinclair/typebox': 0.25.24
       '@types/node': 18.14.6
       fastify: 4.14.1
-      fastify-plugin: 4.5.0
     devDependencies:
       '@eject/config': link:../config
       typescript: 4.9.5

@@ -31,4 +31,4 @@ const EjectPluginCallback: FastifyPluginAsync = async (fastify, options) => {
   });
 };
 
-export const EjectPlugin = fastifyPlugin(EjectPluginCallback);
+export const hooks = fastifyPlugin(EjectPluginCallback);

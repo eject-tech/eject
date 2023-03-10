@@ -1,4 +1,5 @@
 import path from "path";
+import { promises as fs } from "fs";
 import { DirentWithPath, httpMethods, HTTPMethods } from "./plugin/routes";
 
 /**

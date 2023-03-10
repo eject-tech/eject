@@ -9,11 +9,11 @@
     "dev": "tsc -w"
   },
   "dependencies": {
+    "@eject/fastify": "workspace:*",
     "@fastify/type-provider-typebox": "^2.4.0",
     "@sinclair/typebox": "^0.25.24",
     "@types/node": "^18.14.6",
-    "fastify": "^4.14.1",
-    "fastify-plugin": "^4.5.0"
+    "fastify": "^4.14.1"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
