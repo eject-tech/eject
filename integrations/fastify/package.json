@@ -1,0 +1,20 @@
+{
+  "name": "@eject/fastify",
+  "version": "1.0.0",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@types/node": "^18.14.6",
+    "fastify": "^4.14.1",
+    "fastify-plugin": "^4.5.0"
+  },
+  "devDependencies": {
+    "@eject/config": "workspace:*",
+    "typescript": "^4.9.5"
+  }
+}
