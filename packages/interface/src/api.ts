@@ -74,7 +74,7 @@ export const loadRoutes = async (
     prefix?: string;
     dir: string;
     filter?: (file: string) => boolean;
-    // Function to modify routes?
+    // Function to modify routes
   }
 ): Promise<Api> => {
   await fastify.register(EjectPlugin);
