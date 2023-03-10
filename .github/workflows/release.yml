@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
+          cache: "pnpm"
 
       - uses: pnpm/action-setup@v2
         name: Setup pnpm
@@ -42,8 +43,6 @@ jobs:
         run: pnpm install
 
       - name: Run multi semantic release
-        run: |
-          alias npm="pnpm"
-          pnpm run release
+        run: pnpm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
