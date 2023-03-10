@@ -2,13 +2,11 @@
     <img src="./eject-logo.svg" height="128" alt="Eject logo depicting a sketched eject button icon and typeface">
 </p>
 
-<p>This monorepo is a collection of open-source API tools which power the Eject platform and correspondingly developed Eject applications. They mostly encourage faster and stricter API development in accordance with our engineering mantra of "build with, not on".</p>
+This monorepo is a collection of open-source API tools which power the Eject platform and correspondingly developed Eject applications. They encourage faster and stricter API development in accordance with our engineering mantra of "build with, not on".
 
-Want to know more about the Eject platform and how it can help you build best in class APIs? Head over to [geteject.com](https://geteject.com).
+Want to know more about the Eject platform and how it can help you build best in class APIs? Head over to [geteject.com](https://geteject.com). Have questions or want to chat to us about the project? Reach out to us on Twitter at [@geteject](https://twitter.com/geteject).
 
 <hr />
-
-<p>Have questions or want to chat to us about the project? Reach out to us on Twitter at <a href="https://twitter.com/geteject">@geteject</a> with any questions.</p>
 
 ## Why use these API tools?
 
