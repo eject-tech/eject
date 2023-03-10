@@ -33,8 +33,6 @@ export default (async (api: Api, details: RouteInfo) => {
       },
     },
     handler: (request, reply) => {
-      const { succint } = request.query;
-
       reply.send({ status: "Available", uptime: process.uptime() });
     },
   });
