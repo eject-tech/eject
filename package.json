@@ -44,7 +44,7 @@
       [
         "@semantic-release/exec",
         {
-          "successCmd": "pnpm -w exec node scripts/patch-workspace-versions.js"
+          "prepareCmd": "pnpm -w exec node scripts/patch-workspace-versions.js"
         }
       ],
       "@semantic-release/git"
