@@ -4,9 +4,7 @@
   "license": "MIT",
   "files": [
     "eslint-preset.js",
-    "base.tsconfig.json",
-    "nextjs.tsconfig.json",
-    "react-library.tsconfig.json"
+    "base.tsconfig.json"
   ],
   "dependencies": {
     "eslint-config-next": "^13.2.3",

@@ -3,6 +3,7 @@ import { api, loadRoutes } from "./api";
 
 // Build an API
 const start = async () => {
+  // Change plugin to own package
   api.register(loadRoutes, {
     // prefix: "/api",
     dir: path.join(__dirname, "routes"),
