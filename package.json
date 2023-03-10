@@ -1,6 +1,6 @@
 {
   "name": "@eject/monorepo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -17,6 +17,7 @@
     "interface": "pnpm --filter=interface"
   },
   "devDependencies": {
+    "@colbyfayock/semantic-release-pnpm": "^1.0.7",
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "@semantic-release/exec": "^6.0.3",
@@ -24,7 +25,6 @@
     "husky": "^8.0.3",
     "multi-semantic-release": "^3.0.1",
     "prettier": "^2.8.4",
-    "semantic-release-pnpm": "^1.0.2",
     "turbo": "latest"
   },
   "engines": {
@@ -41,7 +41,7 @@
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "semantic-release-pnpm",
+      "@colbyfayock/semantic-release-pnpm",
       [
         "@semantic-release/exec",
         {
