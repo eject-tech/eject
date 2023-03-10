@@ -31,6 +31,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Configure git author
+        run: |
+          git config user.email "${{vars.RELEASE_AUTHOR_EMAIL}}"
+          git config user.name "${{vars.RELEASE_AUTHOR_NAME}}"
+          git remote set-url origin https://${{vars.RELEASE_AUTHOR_USERNAME}}:${{secrets.RELEASE_AUTHOR_TOKEN}}@github.com/${{github.repository}}.git
+
       - name: Run beachball release
         run: pnpm run release publish
         env:
