@@ -54,7 +54,6 @@ We aim to deliver on all of the following criteria with our starter kits:
 - **File based routing**: Just create files, no need to register endpoints.
 - **End-to-end type safety**: Typescript first validation for end-to-end type safety, thanks to [zod](https://github.com/colinhacks/zod).
 - **Full use of Eject features**: Integrating with all of Eject's features, such as versioning, validation, and more.
-
 - [TypeScript](./templates/typescript/): Stub for an Eject TypeScript project, the default when using `eject init`.
 
 ## Contributing
