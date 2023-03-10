@@ -41,6 +41,12 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      [
         "@semantic-release/exec",
         {
           "prepareCmd": "pnpm -w exec node scripts/patch-workspace-versions.js"
