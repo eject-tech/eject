@@ -13,17 +13,14 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "pnpm -w exec multi-semantic-release && pnpm -r publish",
+    "release": "pnpm -w exec beachball",
     "interface": "pnpm --filter=interface"
   },
   "devDependencies": {
-    "@colbyfayock/semantic-release-pnpm": "^1.0.7",
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "beachball": "^2.31.12",
     "husky": "^8.0.3",
-    "multi-semantic-release": "^3.0.1",
     "prettier": "^2.8.4",
     "turbo": "latest"
   },
@@ -35,20 +32,8 @@
       "@commitlint/config-conventional"
     ]
   },
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@colbyfayock/semantic-release-pnpm",
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm -w exec node scripts/patch-workspace-versions.js"
-        }
-      ],
-      "@semantic-release/git"
-    ]
+  "beachball": {
+    "access": "public",
+    "branch": "main"
   }
 }

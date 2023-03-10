@@ -1,8 +1,8 @@
-name: Release Packages
+name: Generate Change Files
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
 
 jobs:
@@ -23,15 +23,10 @@ jobs:
           version: 7
           run_install: false
 
-      - name: Set npm config
-        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run beachball release
-        run: pnpm run release publish
+      - name: Run beachball changeset
+        run: pnpm run release change
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
