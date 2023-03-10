@@ -1,6 +1,5 @@
 {
   "name": "@eject/interface",
-  "private": false,
   "version": "0.0.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
