@@ -1,0 +1,42 @@
+{
+  "name": "@eject/interface",
+  "entries": [
+    {
+      "date": "Fri, 10 Mar 2023 18:57:22 GMT",
+      "tag": "@eject/interface_v1.4.0",
+      "version": "1.4.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "warren@wbickley.com",
+            "package": "@eject/interface",
+            "commit": "71b4401ded7b81fec9f4a45005957c7315fdbc9f",
+            "comment": "chore: added beachball change"
+          },
+          {
+            "author": "warren@eject.tech",
+            "package": "@eject/interface",
+            "commit": "71b4401ded7b81fec9f4a45005957c7315fdbc9f",
+            "comment": "sync"
+          }
+        ],
+        "minor": [
+          {
+            "author": "warren@eject.tech",
+            "package": "@eject/interface",
+            "commit": "71b4401ded7b81fec9f4a45005957c7315fdbc9f",
+            "comment": {
+              "title": ""
+            }
+          },
+          {
+            "author": "warren@eject.tech",
+            "package": "@eject/interface",
+            "commit": "71b4401ded7b81fec9f4a45005957c7315fdbc9f",
+            "comment": "patched version"
+          }
+        ]
+      }
+    }
+  ]
+}

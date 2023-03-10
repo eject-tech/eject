@@ -1,9 +1,0 @@
-{
-  "type": "minor",
-  "comment": {
-    "title": ""
-  },
-  "packageName": "@eject/interface",
-  "email": "warren@eject.tech",
-  "dependentChangeType": "patch"
-}
