@@ -13,21 +13,17 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "pnpm -w exec beachball",
-    "change": "pnpm -w exec beachball change",
+    "changeset": "pnpm -w exec changeset",
+    "release": "pnpm -w exec changeset version",
     "interface": "pnpm --filter=interface"
   },
   "devDependencies": {
-    "beachball": "^2.31.12",
+    "@changesets/cli": "^2.26.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "turbo": "latest"
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "beachball": {
-    "access": "public",
-    "branch": "main"
   }
 }

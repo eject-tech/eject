@@ -29,5 +29,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run beachball check
-        run: pnpm run release check
+      - name: Check for changesets
+        run: pnpm changeset status --since=main
