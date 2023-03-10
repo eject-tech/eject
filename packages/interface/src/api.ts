@@ -1,21 +1,15 @@
-import Fastify, {
-  FastifyInstance,
-  FastifyPluginAsync,
-  HTTPMethods,
-} from "fastify";
+import Fastify, { FastifyPluginAsync } from "fastify";
 import fastifyPlugin from "fastify-plugin";
 
 import {
   TypeBoxTypeProvider,
   TypeBoxValidatorCompiler,
 } from "@fastify/type-provider-typebox";
-import { Type } from "@sinclair/typebox";
-import path from "path";
 import {
   findFiles,
-  filePathToBundleName,
   filePathToMethod,
   filePathToEndpoint,
+  HTTPMethods,
 } from "./route-loader";
 
 // =-=-=-=-=-=[ EJECT PLUGIN ]=-=-=-=-=-=-= //

@@ -1,4 +1,3 @@
-import { HTTPMethods } from "fastify";
 import { Dirent, promises as fs } from "fs";
 import path from "path";
 
@@ -6,18 +5,25 @@ export interface DirentWithPath extends Dirent {
   path: string;
 }
 
-export const permittedMethods = [
+export const httpMethods = [
   "GET",
   "POST",
-  "PATCH",
   "PUT",
-  "DELETE",
-  "CONNECT",
-  "OPTIONS",
   "PATCH",
-] as HTTPMethods[];
+  "DELETE",
+  "HEAD",
+  "OPTIONS",
+  "PROPFIND",
+  "PROPPATCH",
+  "MKCOL",
+  "COPY",
+  "MOVE",
+  "LOCK",
+  "UNLOCK",
+  "TRACE",
+] as const;
 
-// export type PermittedMethods = (typeof permittedMethods)[number];
+export type HTTPMethods = (typeof httpMethods)[number];
 
 /**
  * Recursively search a directory for files
@@ -87,7 +93,7 @@ export const filePathToMethod = (
   filePath: string,
   routePath: string
 ): HTTPMethods => {
-  // Default method for to GET
+  // Set the default method to GET
   let method: HTTPMethods = "GET";
 
   const strippedPath = filePathToBundleName(filePath, routePath);
@@ -96,7 +102,7 @@ export const filePathToMethod = (
   const inferredMethod = strippedPath.split(".")?.pop()?.toLocaleUpperCase();
 
   // If inferred method is valid, overwrite our default method
-  if (permittedMethods.includes(inferredMethod as HTTPMethods)) {
+  if (httpMethods.includes(inferredMethod as HTTPMethods)) {
     method = inferredMethod as HTTPMethods;
   }
   return method;
