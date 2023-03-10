@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": " ",
+  "packageName": "@eject/interface",
+  "email": "warren@wbickley.com",
+  "dependentChangeType": "patch"
+}
