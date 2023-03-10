@@ -1,0 +1,20 @@
+{
+  "name": "@eject/interface",
+  "entries": [
+    {
+      "date": "Fri, 10 Mar 2023 16:55:30 GMT",
+      "tag": "@eject/interface_v1.1.2",
+      "version": "1.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "warren@wbickley.com",
+            "package": "@eject/interface",
+            "commit": "2fb9466f471c45c6a13383a04129819719db133c",
+            "comment": "chore: added beachball change"
+          }
+        ]
+      }
+    }
+  ]
+}
