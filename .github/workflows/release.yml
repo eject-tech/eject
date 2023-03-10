@@ -43,3 +43,5 @@ jobs:
 
       - name: Run multi semantic release
         run: pnpm run release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
