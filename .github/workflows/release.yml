@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -37,7 +39,7 @@ jobs:
           git config user.name "${{vars.RELEASE_AUTHOR_NAME}}"
           git remote set-url origin https://${{vars.RELEASE_AUTHOR_USERNAME}}:${{secrets.RELEASE_AUTHOR_TOKEN}}@github.com/${{github.repository}}.git
 
-      - name: Run beachball release
-        run: pnpm run release publish
+      - name: Create or update release pull request
+        uses: changesets/action@v1
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_AUTHOR_TOKEN }}
