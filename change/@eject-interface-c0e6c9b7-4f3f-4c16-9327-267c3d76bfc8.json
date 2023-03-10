@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "sync",
-  "packageName": "@eject/interface",
-  "email": "warren@eject.tech",
-  "dependentChangeType": "patch"
-}
