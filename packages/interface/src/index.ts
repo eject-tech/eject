@@ -1,10 +1,13 @@
 import path from "path";
-import { api, loadRoutes } from "./api";
+import eject from "@eject/fastify";
+import { api } from "./api";
 
 // Build an API
 const start = async () => {
-  // Change plugin to own package
-  api.register(loadRoutes, {
+  await api.register(eject.hooks);
+
+  // Register Eject routes plugin
+  await api.register(eject.routes, {
     // prefix: "/api",
     dir: path.join(__dirname, "routes"),
   });
