@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   release:
@@ -11,6 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -19,6 +24,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         name: Setup pnpm
+        id: pnpm-install
         with:
           version: 7
           run_install: false
@@ -26,7 +32,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run beachball changeset
-        run: pnpm run release change
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Run beachball check
+        run: pnpm run release check

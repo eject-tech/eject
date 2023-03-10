@@ -14,11 +14,10 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "release": "pnpm -w exec beachball",
+    "change": "pnpm -w exec beachball change",
     "interface": "pnpm --filter=interface"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
     "beachball": "^2.31.12",
     "husky": "^8.0.3",
     "prettier": "^2.8.4",
@@ -26,11 +25,6 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
   },
   "beachball": {
     "access": "public",

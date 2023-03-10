@@ -1,6 +1,6 @@
 {
-  "type": "minor",
-  "comment": " ",
+  "type": "patch",
+  "comment": "chore: added beachball change",
   "packageName": "@eject/interface",
   "email": "warren@wbickley.com",
   "dependentChangeType": "patch"
