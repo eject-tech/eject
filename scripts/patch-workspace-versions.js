@@ -1,18 +1,23 @@
 // loop over packages, get versions and names
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
-const root = JSON.parse(fs.readFileSync(`package.json`, "utf8"));
+const { execSync } = require("child_process");
+
+const foundPackages = JSON.parse(
+  execSync("pnpm m ls --json --depth=-1").toString()
+);
+
 const packages = {};
 
 // Create a version map
 let versionMap = Object.assign(
   {},
-  ...root.workspaces.map((packageDir) => {
+  ...foundPackages.map(({ path }) => {
     const packageInfo = JSON.parse(
-      fs.readFileSync(`${packageDir}/package.json`, "utf8")
+      fs.readFileSync(`${path}/package.json`, "utf8")
     );
 
-    packages[packageDir] = packageInfo;
+    packages[path] = packageInfo;
     return { [packageInfo.name]: packageInfo.version };
   })
 );
