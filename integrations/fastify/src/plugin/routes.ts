@@ -5,7 +5,7 @@ import {
   findFiles,
   filePathToEndpoint,
   filePathToMethod,
-} from "../file-functions";
+} from "../fileFunctions";
 
 export interface DirentWithPath extends Dirent {
   path: string;
