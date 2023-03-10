@@ -14,8 +14,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "pnpm -w exec changeset",
-    "release": "pnpm -w exec changeset version",
-    "interface": "pnpm --filter=interface"
+    "release": "pnpm -w exec changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",

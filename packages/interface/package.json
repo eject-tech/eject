@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "start": "node --watch ./build/index.js"
   },
   "dependencies": {
     "@eject/fastify": "workspace:*",
