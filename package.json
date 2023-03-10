@@ -17,7 +17,6 @@
     "interface": "pnpm --filter=interface"
   },
   "devDependencies": {
-    "@colbyfayock/semantic-release-pnpm": "^1.0.7",
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
     "@semantic-release/exec": "^6.0.3",
@@ -41,7 +40,6 @@
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "@colbyfayock/semantic-release-pnpm",
       [
         "@semantic-release/exec",
         {

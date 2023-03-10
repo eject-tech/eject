@@ -36,3 +36,8 @@ jobs:
         run: pnpm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to npm
+        run: pnpm -r publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
