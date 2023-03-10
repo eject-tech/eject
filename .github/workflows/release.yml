@@ -24,6 +24,11 @@ jobs:
           version: 7
           run_install: false
 
+      - name: Set npm config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       - name: Install dependencies
         run: pnpm install
 
