@@ -42,7 +42,7 @@ jobs:
       - name: Create/update release pull request or publish packages
         uses: changesets/action@v1
         with:
-          publish: pnpm publish
+          publish: pnpm -r publish
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_AUTHOR_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
