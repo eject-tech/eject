@@ -1,8 +1,13 @@
 {
   "name": "@eject/typescript",
   "version": "1.0.1",
-  "main": "./build/index.js",
-  "types": "./build/index.d.ts",
+  "files": [
+    "src",
+    "package.json",
+    "tsconfig.json",
+    "CHANGELOG.md",
+    "README.md"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "tsc",

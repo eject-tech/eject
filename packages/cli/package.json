@@ -8,6 +8,12 @@
     "@eject/cli": "bin/eject",
     "eject": "bin/eject"
   },
+  "files": [
+    "build",
+    "bin",
+    "CHANGELOG.md",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
