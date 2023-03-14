@@ -1,5 +1,13 @@
 # @eject/interface
 
+## 1.4.3
+
+### Patch Changes
+
+- cc9bfbf: Patched releases with build files
+- Updated dependencies [cc9bfbf]
+  - @eject/fastify@1.0.3
+
 ## 1.4.2
 
 ### Patch Changes
