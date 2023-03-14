@@ -1,5 +1,11 @@
 # @eject/fastify
 
+## 1.0.3
+
+### Patch Changes
+
+- cc9bfbf: Patched releases with build files
+
 ## 1.0.2
 
 ### Patch Changes
