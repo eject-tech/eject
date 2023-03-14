@@ -54,9 +54,6 @@ export const importRoutes = async (
     // Function to modify routes
   }
 ): Promise<FastifyInstance> => {
-  // Load in the Eject plugin for registering schemas over the interface
-  // await fastify.register(EjectPlugin);
-
   // When API is ready, register our routes
   const promises = [];
   const routePath = options.dir;

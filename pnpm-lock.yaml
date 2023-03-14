@@ -64,6 +64,27 @@ importers:
 
   packages/interface:
     specifiers:
+      '@apidevtools/openapi-schemas': ^2.1.0
+      '@eject/config': workspace:*
+      '@eject/fastify': workspace:*
+      '@fastify/type-provider-typebox': ^2.4.0
+      '@sinclair/typebox': ^0.25.24
+      '@types/node': ^18.14.6
+      fastify: ^4.14.1
+      typescript: ^4.9.5
+    dependencies:
+      '@apidevtools/openapi-schemas': 2.1.0
+      '@eject/fastify': link:../../integrations/fastify
+      '@fastify/type-provider-typebox': 2.4.0_naatsb2dmwxq3j32xoqzjtyzqm
+      '@sinclair/typebox': 0.25.24
+      '@types/node': 18.14.6
+      fastify: 4.14.1
+    devDependencies:
+      '@eject/config': link:../config
+      typescript: 4.9.5
+
+  starters/typescript:
+    specifiers:
       '@eject/config': workspace:*
       '@eject/fastify': workspace:*
       '@fastify/type-provider-typebox': ^2.4.0
@@ -78,7 +99,7 @@ importers:
       '@types/node': 18.14.6
       fastify: 4.14.1
     devDependencies:
-      '@eject/config': link:../config
+      '@eject/config': link:../../packages/config
       typescript: 4.9.5
 
 packages:
@@ -90,6 +111,11 @@ packages:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
     dev: true
+
+  /@apidevtools/openapi-schemas/2.1.0:
+    resolution: {integrity: sha512-Zc1AlqrJlX3SlpupFGpiLi2EbteyP7fXmUOGup6/DnkRgjP9bgMM/ag+n91rsv0U1Gpz0H3VILA/o3bW7Ua6BQ==}
+    engines: {node: '>=10'}
+    dev: false
 
   /@ava/typescript/3.0.1:
     resolution: {integrity: sha512-/JXIUuKsvkaneaiA9ckk3ksFTqvu0mDNlChASrTe2BnDsvMbhQdPWyqQjJ9WRJWVhhs5TWn1/0Pp1G6Rv8Syrw==}
