@@ -1,29 +1,6 @@
-import { Dirent, promises as fs } from "fs";
 import path from "path";
-
-export interface DirentWithPath extends Dirent {
-  path: string;
-}
-
-export const httpMethods = [
-  "GET",
-  "POST",
-  "PUT",
-  "PATCH",
-  "DELETE",
-  "HEAD",
-  "OPTIONS",
-  "PROPFIND",
-  "PROPPATCH",
-  "MKCOL",
-  "COPY",
-  "MOVE",
-  "LOCK",
-  "UNLOCK",
-  "TRACE",
-] as const;
-
-export type HTTPMethods = (typeof httpMethods)[number];
+import { promises as fs } from "fs";
+import { DirentWithPath, httpMethods, HTTPMethods } from "./plugin/routes";
 
 /**
  * Recursively search a directory for files
@@ -57,7 +34,7 @@ export const filePathToEndpoint = (
   filePath: string,
   routePath: string
 ): string => {
-  const strippedPath = filePathToBundleName(filePath, routePath);
+  const strippedPath = reduceFileName(filePath, routePath);
 
   // Split path into parts, replace square bracket syntax with colon for easy param splitting
   const parts = strippedPath.replace(/\[([^\]]+)]/gm, ":$1").split("/");
@@ -96,7 +73,7 @@ export const filePathToMethod = (
   // Set the default method to GET
   let method: HTTPMethods = "GET";
 
-  const strippedPath = filePathToBundleName(filePath, routePath);
+  const strippedPath = reduceFileName(filePath, routePath);
 
   // Attempt to infer method from filename eg "schema.get.ts"
   const inferredMethod = strippedPath.split(".")?.pop()?.toLocaleUpperCase();
@@ -108,10 +85,7 @@ export const filePathToMethod = (
   return method;
 };
 
-export const filePathToBundleName = (
-  filePath: string,
-  routePath: string
-): string => {
+const reduceFileName = (filePath: string, routePath: string): string => {
   return filePath
     .replace(path.resolve("src", routePath), "")
     .split(".")

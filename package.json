@@ -4,22 +4,21 @@
   "private": true,
   "workspaces": [
     "packages/*",
+    "integrations/*",
     "starters/*",
     "generators/*"
   ],
   "scripts": {
-    "postinstall": "pnpm exec husky install",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
+    "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "pnpm -w exec changeset",
-    "release": "pnpm -w exec changeset version",
-    "interface": "pnpm --filter=interface"
+    "release": "pnpm -w exec changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
-    "husky": "^8.0.3",
     "prettier": "^2.8.4",
     "turbo": "latest"
   },
