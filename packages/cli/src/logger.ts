@@ -2,7 +2,7 @@ import chalk from "chalk";
 
 export interface EjectLoggerOptions {
   scope: string;
-  style: chalk.ChalkFunction;
+  style: typeof chalk;
   level: number;
 }
 
@@ -75,11 +75,7 @@ export class EjectLogger {
     return scopedLogger;
   }
 
-  public createLogFunction(
-    level: number,
-    label: string,
-    style: chalk.ChalkFunction
-  ) {
+  public createLogFunction(level: number, label: string, style: typeof chalk) {
     const scopeTruncation = this.scopeWidth - 2; // Allow room for appended space and colon
     const scope =
       this.options.scope.length > scopeTruncation
