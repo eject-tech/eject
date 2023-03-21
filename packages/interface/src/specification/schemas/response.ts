@@ -1,3 +1,3 @@
 import { Type } from "@sinclair/typebox";
 
-export const responses = Type.Object({});
+export const response = Type.Object({});

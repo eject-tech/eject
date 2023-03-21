@@ -1,3 +1,3 @@
 import { Type } from "@sinclair/typebox";
 
-export const parameters = Type.Object({});
+export const example = Type.Object({});

@@ -1,3 +1,3 @@
 import { Type } from "@sinclair/typebox";
 
-export const callbacks = Type.Object({});
+export const header = Type.Object({});

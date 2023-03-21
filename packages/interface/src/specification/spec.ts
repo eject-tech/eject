@@ -1,39 +1,51 @@
 import { Type } from "@sinclair/typebox";
 
-import { callbacks } from "./schemas/components/callbacks";
-import { examples } from "./schemas/components/examples";
-import { headers } from "./schemas/components/headers";
-import { links } from "./schemas/components/links";
-import { parameters } from "./schemas/components/parameters";
-import { pathItems } from "./schemas/components/pathItems";
-import { requestBodies } from "./schemas/components/requestBodies";
-import { responses } from "./schemas/components/responses";
-import { schemas } from "./schemas/components/schemas";
-import { securitySchemes } from "./schemas/components/securitySchemes";
+import { callback } from "./schemas/callback";
+import { example } from "./schemas/examples";
+import { header } from "./schemas/header";
+import { link } from "./schemas/link";
+import { parameter } from "./schemas/parameter";
+import { pathItem, pathItemName } from "./schemas/pathItem";
+import { requestBody } from "./schemas/requestBody";
+import { response } from "./schemas/response";
+import { schema } from "./schemas/schema";
+import { securityScheme } from "./schemas/securityScheme";
 import { info } from "./schemas/info";
-import { servers } from "./schemas/server";
 import { tags } from "./schemas/tags";
+import { ref } from "./schemas/ref";
+import { externalDocs } from "./schemas/externalDocs";
+import { security } from "./schemas/security";
 
 export const spec = Type.Object(
   {
     info: Type.Required(info),
-    servers: Type.Optional(servers),
-    tags: Type.Optional(tags),
-    components: Type.Optional(
-      Type.Object({
-        schemas: Type.Optional(schemas),
-        responses: Type.Optional(responses),
-        parameters: Type.Optional(parameters),
-        examples: Type.Optional(examples),
-        requestBodies: Type.Optional(requestBodies),
-        headers: Type.Optional(headers),
-        securitySchemes: Type.Optional(securitySchemes),
-        links: Type.Optional(links),
-        callbacks: Type.Optional(callbacks),
-        pathItems: Type.Optional(pathItems),
+    servers: Type.Optional(
+      Type.Array(server, {
+        title: "Servers",
+        $id: "servers",
       })
     ),
-    paths: Type.Required(pathItems),
+    tags: Type.Optional(tags),
+    externalDocs: Type.Optional(externalDocs),
+    paths: Type.Record(pathItemName, pathItem, {
+      minProperties: 1,
+    }),
+    webhooks: Type.Record(Type.String(), Type.Union([pathItem, ref])),
+    components: Type.Optional(
+      Type.Object({
+        schemas: Type.Optional(schema),
+        responses: Type.Optional(response),
+        parameters: Type.Optional(parameter),
+        examples: Type.Optional(example),
+        requestBodies: Type.Optional(requestBody),
+        headers: Type.Optional(header),
+        securitySchemes: Type.Optional(securityScheme),
+        links: Type.Optional(link),
+        callbacks: Type.Optional(callback),
+        pathItems: Type.Optional(Type.Array(pathItem)),
+      })
+    ),
+    security: Type.Optional(security),
   },
   {
     title: "OpenAPI Specification",
