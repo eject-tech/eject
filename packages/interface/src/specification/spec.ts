@@ -15,6 +15,7 @@ import { tags } from "./schemas/tags";
 import { ref } from "./schemas/ref";
 import { externalDocs } from "./schemas/externalDocs";
 import { security } from "./schemas/security";
+import { server } from "./schemas/server";
 
 export const spec = Type.Object(
   {
@@ -33,15 +34,15 @@ export const spec = Type.Object(
     webhooks: Type.Record(Type.String(), Type.Union([pathItem, ref])),
     components: Type.Optional(
       Type.Object({
-        schemas: Type.Optional(schema),
-        responses: Type.Optional(response),
-        parameters: Type.Optional(parameter),
-        examples: Type.Optional(example),
-        requestBodies: Type.Optional(requestBody),
-        headers: Type.Optional(header),
-        securitySchemes: Type.Optional(securityScheme),
-        links: Type.Optional(link),
-        callbacks: Type.Optional(callback),
+        schemas: Type.Optional(Type.Array(schema)),
+        responses: Type.Optional(Type.Array(response)),
+        parameters: Type.Optional(Type.Array(parameter)),
+        examples: Type.Optional(Type.Array(example)),
+        requestBodies: Type.Optional(Type.Array(requestBody)),
+        headers: Type.Optional(Type.Array(header)),
+        securitySchemes: Type.Optional(Type.Array(securityScheme)),
+        links: Type.Optional(Type.Array(link)),
+        callbacks: Type.Optional(Type.Array(callback)),
         pathItems: Type.Optional(Type.Array(pathItem)),
       })
     ),

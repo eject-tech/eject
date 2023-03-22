@@ -1,5 +1,4 @@
 import { Type } from "@sinclair/typebox";
+import { securityScheme, securitySchemeName } from "./securityScheme";
 
-import { securitySchemeName } from "./components/securityScheme";
-
-export const security = Type.Record(Type.String(), securitySchemeName);
+export const security = Type.Record(securitySchemeName, securityScheme);

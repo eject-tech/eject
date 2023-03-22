@@ -16,8 +16,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "jest"
+    "dev": "tsc --watch"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",

@@ -1,4 +1,10 @@
 import { Type } from "@sinclair/typebox";
-import { parameter } from "./parameter";
+import { headerParameterBase } from "./parameter";
 
-export const header = Type.Omit(parameter, ["in", "name"]);
+// @todo: fix header parameter recursion
+export const header = Type.Intersect([
+  headerParameterBase,
+  //   Type.Object({
+  //     content: mediaType,
+  //   }),
+]);
