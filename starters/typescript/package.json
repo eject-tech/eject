@@ -1,6 +1,6 @@
 {
   "name": "@eject/typescript",
-  "version": "1.0.3",
+  "version": "0.0.3",
   "files": [
     "src",
     "package.json",
@@ -18,7 +18,7 @@
     "@eject/fastify": "workspace:*",
     "@fastify/type-provider-typebox": "^2.4.0",
     "@sinclair/typebox": "^0.25.24",
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.3",
     "fastify": "^4.14.1"
   },
   "devDependencies": {

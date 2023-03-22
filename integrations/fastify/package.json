@@ -1,6 +1,6 @@
 {
   "name": "@eject/fastify",
-  "version": "1.0.3",
+  "version": "0.0.3",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -15,12 +15,12 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.3",
     "fastify": "^4.14.1",
     "fastify-plugin": "^4.5.0"
   },
   "devDependencies": {
-    "@ava/typescript": "^3.0.1",
+    "@ava/typescript": "^4.0.0",
     "@eject/config": "workspace:*",
     "ava": "^5.2.0",
     "c8": "^7.13.0",
