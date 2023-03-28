@@ -1,8 +1,8 @@
-import type { Api } from "../api";
+import type { Api } from "../../api";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
 
-import { info } from "../specification/schemas/info";
+import { info } from "../../specification/schemas/info";
 
 export default (async (api: Api, details: RouteInfo) => {
   api.route({
@@ -29,6 +29,8 @@ export default (async (api: Api, details: RouteInfo) => {
     },
     handler: async (request, reply) => {
       // Create the API in the local database
+
+      // Return the ID of the API
       reply.send({ key: "true" });
     },
   });

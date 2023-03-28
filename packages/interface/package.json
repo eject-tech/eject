@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "start": "node --watch ./build/index.js"
+    "start": "node --watch ./build/index.js",
+    "test": "c8 ava"
   },
   "dependencies": {
     "@eject/fastify": "workspace:*",
@@ -23,6 +24,17 @@
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
+    "ava": "^5.2.0",
+    "c8": "^7.13.0",
     "typescript": "^4.9.5"
+  },
+  "ava": {
+    "verbose": true,
+    "typescript": {
+      "rewritePaths": {
+        "src/": "build/"
+      },
+      "compile": false
+    }
   }
 }

@@ -19,7 +19,8 @@ import { server } from "./schemas/server";
 
 export const spec = Type.Object(
   {
-    info: Type.Required(info),
+    openapi: Type.Literal("3.1.0"),
+    info: info,
     servers: Type.Optional(
       Type.Array(server, {
         title: "Servers",
@@ -31,7 +32,9 @@ export const spec = Type.Object(
     paths: Type.Record(pathItemName, pathItem, {
       minProperties: 1,
     }),
-    webhooks: Type.Record(Type.String(), Type.Union([pathItem, ref])),
+    webhooks: Type.Optional(
+      Type.Record(Type.String(), Type.Union([pathItem, ref]))
+    ),
     components: Type.Optional(
       Type.Object({
         schemas: Type.Optional(Type.Array(schema)),
