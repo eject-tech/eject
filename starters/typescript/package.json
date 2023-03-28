@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@eject/fastify": "workspace:*",
-    "@fastify/type-provider-typebox": "^2.4.0",
-    "@sinclair/typebox": "^0.25.24",
-    "@types/node": "^18.14.6",
-    "fastify": "^4.14.1"
+    "@fastify/type-provider-typebox": "^3.0.0",
+    "@sinclair/typebox": "^0.26.6",
+    "@types/node": "^18.15.10",
+    "fastify": "^4.15.0"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   }
 }

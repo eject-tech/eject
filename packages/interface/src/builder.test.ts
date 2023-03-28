@@ -14,7 +14,7 @@ test("writer can produce a valid openapi spec", async (t) => {
   });
 
   try {
-    spec.addPath("/test", "get", {
+    spec.addRoute("/test", "get", {
       summary: "Test endpoint",
       responses: {
         200: {

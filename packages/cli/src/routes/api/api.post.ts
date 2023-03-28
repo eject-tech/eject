@@ -2,7 +2,7 @@ import type { Api } from "../../api";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
 
-import { info } from "../../specification/schemas/info";
+import { OpenAPIBuilder, schema } from "@eject/interface";
 
 export default (async (api: Api, details: RouteInfo) => {
   api.route({
@@ -12,7 +12,7 @@ export default (async (api: Api, details: RouteInfo) => {
         description: "",
         summary: "Register a new API",
       },
-      body: info,
+      body: schema.info,
       response: {
         200: Type.Object(
           {
@@ -29,9 +29,10 @@ export default (async (api: Api, details: RouteInfo) => {
     },
     handler: async (request, reply) => {
       // Create the API in the local database
+      const openAPI = new OpenAPIBuilder(request.body);
 
       // Return the ID of the API
-      reply.send({ key: "true" });
+      reply.send({ key: openAPI.key });
     },
   });
 }) satisfies RouteHandler;

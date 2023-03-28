@@ -13,9 +13,8 @@ import crypto from "crypto";
 const specifications: Record<string, Static<typeof schema.spec>> = {};
 
 export class OpenAPIBuilder {
-  protected uniqueID: string;
-
-  protected specification: Static<typeof schema.spec>;
+  public readonly key: string;
+  public readonly specification: Static<typeof schema.spec>;
 
   constructor(specIDOrInfo: string | Static<typeof schema.info>) {
     if (typeof specIDOrInfo === "string") {
@@ -23,14 +22,14 @@ export class OpenAPIBuilder {
         throw new Error("Valid spec ID is required");
       }
 
-      this.uniqueID = specIDOrInfo;
+      this.key = specIDOrInfo;
       this.specification = specifications[specIDOrInfo];
 
       return this;
     }
 
     // Create a unique ID for this spec file
-    this.uniqueID = crypto.randomUUID();
+    this.key = crypto.randomUUID();
 
     this.specification = {
       openapi: "3.1.0",
@@ -44,14 +43,14 @@ export class OpenAPIBuilder {
 
   save() {
     // Write the info to a new OpenAPI spec
-    specifications[this.uniqueID] = this.specification;
+    specifications[this.key] = this.specification;
   }
 
   print() {
     return JSON.stringify(this.specification, null, 2);
   }
 
-  public addPath(
+  public addRoute(
     url: Static<typeof schema.pathItemName>,
     routeMethod: Static<typeof schema.method>,
     details?: Static<typeof schema.operation>

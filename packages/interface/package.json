@@ -16,17 +16,14 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "@eject/fastify": "workspace:*",
-    "@fastify/type-provider-typebox": "^2.4.0",
-    "@sinclair/typebox": "^0.25.24",
-    "@types/node": "^18.14.6",
-    "fastify": "^4.14.1"
+    "@sinclair/typebox": "^0.26.6",
+    "@types/node": "^18.15.10"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
     "ava": "^5.2.0",
     "c8": "^7.13.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.2"
   },
   "ava": {
     "verbose": true,
