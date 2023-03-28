@@ -6,6 +6,10 @@ This monorepo is a collection of open-source API tools which power the Eject pla
 
 Want to know more about the Eject platform and how it can help you build best in class APIs? Head over to [geteject.com](https://geteject.com). Have questions or want to chat to us about the project? Reach out to us on Twitter at [@geteject](https://twitter.com/geteject).
 
+<hr />
+<p><strong>These tools are still in active development and subject to a first release, there will be ongoing breaking changes until then.</strong></p>
+<hr />
+
 ## Why use these API tools?
 
 - **Language & Framework Agnostic**: Ejects CLI tools enable you to build best in class APIs with any language and framework.

@@ -1,55 +1,44 @@
 import test from "ava";
-import { filePathToEndpoint, filePathToMethod } from "./fileFunctions";
+import { getRouteInfoFromPath } from "./fileFunctions";
 
-test("file path to endpoint returns valid simple paths", (t) => {
-  t.assert(
-    "endpoint" === filePathToEndpoint("routes/endpoint.post.ts", "routes")
-  );
-  t.assert(
-    "endpoint/status" ===
-      filePathToEndpoint("routes/endpoint/status.head.ts", "routes")
-  );
-  t.assert(
-    "endpoint/childpath/status" ===
-      filePathToEndpoint("routes/endpoint/childpath/status.ts", "routes")
-  );
-});
+const tests = [
+  {
+    input: "routes/endpoint.post.ts",
+    expected: { url: "/endpoint", method: "POST" },
+  },
+  {
+    input: "routes/endpoint/status.head.ts",
+    expected: { url: "/endpoint/status", method: "HEAD" },
+  },
+  {
+    input: "routes/endpoint/childpath/status.ts",
+    expected: { url: "/endpoint/childpath/status", method: "GET" },
+  },
+  {
+    input: "routes/endpoint/status/status.options.ts",
+    expected: { url: "/endpoint/status", method: "OPTIONS" },
+  },
+  {
+    input: "routes/endpoint/versioned/versioned.post.1.0.0.ts",
+    expected: {
+      url: "/endpoint/versioned",
+      method: "POST",
+      constraints: { version: "1.0.0" },
+    },
+  },
+  {
+    input: "routes/endpoint/getversioned/getversioned.1.0.0.ts",
+    expected: {
+      url: "/endpoint/getversioned",
+      method: "GET",
+      constraints: { version: "1.0.0" },
+    },
+  },
+];
 
-test("file path to endpoint returns valid deduplicated paths", (t) => {
-  t.assert(
-    "endpoint" ===
-      filePathToEndpoint("routes/endpoint/endpoint.put.ts", "routes")
-  );
-  t.assert(
-    "endpoint/status" ===
-      filePathToEndpoint("routes/endpoint/status/status.options.ts", "routes")
-  );
-  t.assert(
-    "endpoint/childpath/status" ===
-      filePathToEndpoint(
-        "routes/endpoint/childpath/childpath/status.ts",
-        "routes"
-      )
-  );
-});
-
-test("file path to method returns valid method", (t) => {
-  t.assert(
-    "POST" === filePathToMethod("routes/endpoint/endpoint.post.ts", "routes")
-  );
-
-  t.assert(
-    "GET" === filePathToMethod("routes/endpoint/endpoint.get.ts", "routes")
-  );
-});
-
-test("file path to method returns default method", (t) => {
-  t.assert("GET" === filePathToMethod("routes/endpoint/endpoint.ts", "routes"));
-});
-
-test("file path to method returns default method on invalid", (t) => {
-  t.assert(
-    "GET" ===
-      filePathToMethod("routes/endpoint/endpoint.invalidmethod.ts", "routes")
-  );
-});
+for (let i = 0; i < tests.length; i++) {
+  const ti = tests[i];
+  test(`for endpoint ${ti.input} we expect correct route info`, (t) => {
+    t.deepEqual(getRouteInfoFromPath(ti.input, "routes"), ti.expected);
+  });
+}
