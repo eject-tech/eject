@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node build/generate-json-schemas.js",
     "dev": "tsc -w",
     "start": "node --watch ./build/index.js",
     "test": "c8 ava"
