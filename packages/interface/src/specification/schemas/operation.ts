@@ -22,7 +22,10 @@ export const operation = Type.Object(
       Type.Union([Type.Ref(response), ref])
     ),
     // TODO: recursive issue
-    // callbacks: Type.Record(Type.String({ title: "Callback" }), callback),
+    // callbacks: Type.Record(
+    //   Type.String({ title: "Callback" }),
+    //   Type.Ref(callback)
+    // ),
     deprecated: Type.Optional(Type.Boolean({ title: "Deprecated" })),
     security: Type.Optional(Type.Ref(security)),
     servers: Type.Optional(Type.Array(Type.Ref(server))),
