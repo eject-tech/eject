@@ -4,9 +4,16 @@ import { link } from "./link";
 import { mediaTypeKey, mediaType } from "./mediaType";
 import { ref } from "./ref";
 
-export const response = Type.Object({
-  description: Type.Optional(Type.String({ title: "Description" })),
-  headers: Type.Optional(Type.Record(Type.String(), Type.Union([header, ref]))),
-  content: Type.Record(mediaTypeKey, mediaType),
-  links: Type.Optional(Type.Record(Type.String(), Type.Union([link, ref]))),
-});
+export const response = Type.Object(
+  {
+    description: Type.Optional(Type.String({ title: "Description" })),
+    headers: Type.Optional(
+      Type.Record(Type.String(), Type.Union([Type.Ref(header), ref]))
+    ),
+    content: Type.Record(mediaTypeKey, Type.Ref(mediaType)),
+    links: Type.Optional(
+      Type.Record(Type.String(), Type.Union([Type.Ref(link), ref]))
+    ),
+  },
+  { $id: "response" }
+);

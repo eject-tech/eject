@@ -1,14 +1,11 @@
 import { Type } from "@sinclair/typebox";
 
-export const ref = Type.Object(
+export const example = Type.Object(
   {
-    $ref: Type.String({ title: "Reference", format: "uri-reference" }),
     summary: Type.Optional(Type.String({ title: "Summary" })),
     description: Type.Optional(Type.String({ title: "Description" })),
+    value: Type.Optional(Type.Any({ title: "Value" })),
+    externalValue: Type.Optional(Type.String({ title: "External Value" })),
   },
-  {
-    $id: "ref",
-    title: "Reference",
-    additionalProperties: false,
-  }
+  { $id: "example" }
 );

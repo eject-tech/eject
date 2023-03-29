@@ -7,20 +7,24 @@ import { server } from "./server";
 
 // TODO: fix formats issue
 export const pathItemName = Type.String({
+  $id: "pathItemName",
   title: "Path URI" /*, format: "uri"*/,
 });
 
 export const pathItemOperations = Type.Optional(
-  Type.Record(method, Type.Optional(operation))
+  Type.Record(method, Type.Optional(Type.Ref(operation)))
 );
 
-export const pathItem = Type.Intersect([
-  Type.Object({
-    $ref: Type.Optional(Type.String({ title: "Reference" })),
-    summary: Type.Optional(Type.String({ title: "Summary" })),
-    description: Type.Optional(Type.String({ title: "Description" })),
-    servers: Type.Optional(Type.Array(server)),
-    parameters: Type.Optional(Type.Union([parameter, ref])),
-  }),
-  pathItemOperations,
-]);
+export const pathItem = Type.Intersect(
+  [
+    Type.Object({
+      $ref: Type.Optional(Type.String({ title: "Reference" })),
+      summary: Type.Optional(Type.String({ title: "Summary" })),
+      description: Type.Optional(Type.String({ title: "Description" })),
+      servers: Type.Optional(Type.Array(Type.Ref(server))),
+      parameters: Type.Optional(Type.Union([Type.Ref(parameter), ref])),
+    }),
+    pathItemOperations,
+  ],
+  { $id: "pathItem" }
+);

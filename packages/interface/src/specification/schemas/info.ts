@@ -10,12 +10,12 @@ export const info = Type.Object(
     termsOfService: Type.Optional(
       Type.String({ title: "API Terms of Service", format: "uri" })
     ),
-    contact: Type.Optional(contact),
-    license: Type.Optional(license),
+    contact: Type.Optional(Type.Ref(contact)),
+    license: Type.Optional(Type.Ref(license)),
   },
   {
-    title: "API Information",
     $id: "info",
+    title: "API Information",
     additionalProperties: false,
   }
 );
