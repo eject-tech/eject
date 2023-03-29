@@ -30,7 +30,7 @@ export async function* findFiles(
   }
 }
 
-// @todo: refactor this, it can be more readable
+// TODO: refactor this, it can be more readable
 export const getRouteInfoFromPath = (
   filePath: string,
   routePath: string

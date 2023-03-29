@@ -46,6 +46,10 @@ export class OpenAPIBuilder {
     specifications[this.key] = this.specification;
   }
 
+  spec() {
+    return this.specification;
+  }
+
   print() {
     return JSON.stringify(this.specification, null, 2);
   }

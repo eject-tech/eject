@@ -5,7 +5,10 @@ import { parameter } from "./parameter";
 import { ref } from "./ref";
 import { server } from "./server";
 
-export const pathItemName = Type.String({ title: "Path URI", format: "uri" });
+// TODO: fix formats issue
+export const pathItemName = Type.String({
+  title: "Path URI" /*, format: "uri"*/,
+});
 
 export const pathItemOperations = Type.Optional(
   Type.Record(method, Type.Optional(operation))

@@ -1,6 +1,7 @@
-import type { Api } from "../../../../api";
+import type { Api } from "../../../api";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
+
 import { OpenAPIBuilder, schema } from "@eject/interface";
 
 export default (async (api: Api, details: RouteInfo) => {
@@ -9,30 +10,21 @@ export default (async (api: Api, details: RouteInfo) => {
     schema: {
       details: {
         description: "",
-        summary: "Register a new endpoint",
+        summary: "Get the specification for you API",
       },
-      body: Type.Object({
-        url: schema.pathItemName,
-        method: schema.method,
-        operation: schema.operation,
-      }),
       params: Type.Object({
         id: Type.String(),
       }),
       response: {
-        200: Type.Object({}),
+        200: Type.String(),
       },
     },
-    handler: async (request: any, reply: any) => {
+    handler: async (request, reply) => {
+      // Create the API in the local database
       const openAPI = new OpenAPIBuilder(request.params.id);
 
-      openAPI.addRoute(
-        request.body.url,
-        request.body.method,
-        request.body.operation
-      );
-
-      reply.send();
+      // Return the spec
+      reply.send(openAPI.print());
     },
   });
 }) satisfies RouteHandler;

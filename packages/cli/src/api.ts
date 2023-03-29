@@ -8,6 +8,11 @@ import {
 export const api = fastify({
   logger: true,
   ignoreTrailingSlash: true,
+  ajv: {
+    customOptions: {
+      removeAdditional: true,
+    },
+  },
 })
   .withTypeProvider<TypeBoxTypeProvider>()
   .setValidatorCompiler(TypeBoxValidatorCompiler);

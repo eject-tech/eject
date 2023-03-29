@@ -1,6 +1,6 @@
 import { Type } from "@sinclair/typebox";
 import { example } from "./examples";
-import { mediaType } from "./mediaType";
+import { mediaType, mediaTypeKey } from "./mediaType";
 import { ref } from "./ref";
 import { schema } from "./schema";
 
@@ -32,7 +32,7 @@ export const schemaParameter = Type.Intersect([
   parameterBase,
   Type.Object({
     schema: schema,
-    // @todo: these need to be dynamic based on "in" https://spec.openapis.org/oas/latest.html#style-values
+    // TODO: these need to be dynamic based on "in" https://spec.openapis.org/oas/latest.html#style-values
     style: Type.Optional(
       Type.Union([
         Type.Literal("matrix"),
@@ -47,12 +47,12 @@ export const schemaParameter = Type.Intersect([
   }),
 ]);
 
-// @todo: fix header parameter recursion
+// TODO: fix header parameter recursion
 // Recursion from here through to mediaType -> encoding -> header -> parameter breaks typebox
 // Need to account for recursion https://github.com/sinclairzx81/typebox#types-recursive
 export const parameter = Type.Intersect([
   parameterBase,
   Type.Object({
-    content: mediaType,
+    content: Type.Record(mediaTypeKey, mediaType),
   }),
 ]);

@@ -1,6 +1,6 @@
 import { createCLI } from "soly";
 import path from "path";
-import eject from "@eject/fastify";
+import * as eject from "@eject/fastify";
 import { api } from "./api";
 
 (async () => {
@@ -11,8 +11,14 @@ import { api } from "./api";
    */
   cli.command("start", (cmd) => {
     return async () => {
+      const port = parseInt(process.env.PORT || "3000");
+
       // Build an API
-      await api.register(eject.hooks);
+      await api.register(eject.ejectInterface, {
+        version: "0.0.1",
+        title: "Eject Interface API",
+        ejectHost: `http://localhost:${port}`,
+      });
 
       // Register Eject routes plugin
       await api.register(eject.routes, {
@@ -21,7 +27,7 @@ import { api } from "./api";
       });
 
       try {
-        await api.listen({ port: parseInt(process.env.PORT || "3000") });
+        await api.listen({ port });
       } catch (err) {
         api.log.error(err);
         process.exit(1);

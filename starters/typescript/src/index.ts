@@ -4,7 +4,7 @@ import { api } from "./api";
 
 // Build an API
 const start = async () => {
-  await api.register(eject.hooks);
+  await api.register(eject.ejectInterface);
 
   // Register Eject routes plugin
   await api.register(eject.routes, {

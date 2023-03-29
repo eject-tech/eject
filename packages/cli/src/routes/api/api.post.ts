@@ -31,6 +31,8 @@ export default (async (api: Api, details: RouteInfo) => {
       // Create the API in the local database
       const openAPI = new OpenAPIBuilder(request.body);
 
+      openAPI.save();
+
       // Return the ID of the API
       reply.send({ key: openAPI.key });
     },

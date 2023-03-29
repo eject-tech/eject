@@ -17,7 +17,7 @@ export const operation = Type.Object({
   parameters: Type.Optional(Type.Array(parameter)),
   requestBody: Type.Optional(requestBody),
   responses: Type.Record(Type.Number(), Type.Union([ref, response])),
-  // @todo: recursive issue
+  // TODO: recursive issue
   // callbacks: Type.Record(Type.String({ title: "Callback" }), callback),
   deprecated: Type.Optional(Type.Boolean({ title: "Deprecated" })),
   security: Type.Optional(security),
