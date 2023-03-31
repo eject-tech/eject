@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Static, Type } from "@sinclair/typebox";
 import { expression } from "./expression";
 import { pathItem } from "./pathItem";
 import { ref } from "./ref";
@@ -10,3 +10,5 @@ export const callback = Type.Record(
     $id: "callback",
   }
 );
+
+export type Callback = Static<typeof callback>;

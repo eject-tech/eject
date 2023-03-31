@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const license = Type.Object(
   {
@@ -8,3 +8,5 @@ export const license = Type.Object(
   },
   { $id: "license" }
 );
+
+export type License = Static<typeof license>;

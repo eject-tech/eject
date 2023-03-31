@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { method } from "./method";
 import { operation } from "./operation";
 import { parameter } from "./parameter";
@@ -11,9 +11,13 @@ export const pathItemName = Type.String({
   title: "Path URI" /*, format: "uri"*/,
 });
 
+export type PathItemName = Static<typeof pathItemName>;
+
 export const pathItemOperations = Type.Optional(
   Type.Record(method, Type.Optional(Type.Ref(operation)))
 );
+
+export type PathItemOperations = Static<typeof pathItemOperations>;
 
 export const pathItem = Type.Intersect(
   [
@@ -28,3 +32,5 @@ export const pathItem = Type.Intersect(
   ],
   { $id: "pathItem" }
 );
+
+export type PathItem = Static<typeof pathItem>;

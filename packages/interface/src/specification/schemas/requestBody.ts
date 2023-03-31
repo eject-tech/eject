@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { mediaType, mediaTypeKey } from "./mediaType";
 
 export const requestBody = Type.Object(
@@ -11,3 +11,5 @@ export const requestBody = Type.Object(
   },
   { $id: "requestBody" }
 );
+
+export type RequestBody = Static<typeof requestBody>;

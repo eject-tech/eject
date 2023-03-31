@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { example } from "./example";
 import { mediaType, mediaTypeKey } from "./mediaType";
 import { ref } from "./ref";
@@ -20,6 +20,8 @@ export const headerParameterBase = Type.Object(
   { $id: "headerParameterBase" }
 );
 
+export type HeaderParameterBase = Static<typeof headerParameterBase>;
+
 export const parameterBase = Type.Intersect(
   [
     Type.Object({
@@ -35,6 +37,8 @@ export const parameterBase = Type.Intersect(
   ],
   { $id: "parameterBase" }
 );
+
+export type ParameterBase = Static<typeof parameterBase>;
 
 export const schemaParameter = Type.Intersect(
   [
@@ -58,6 +62,8 @@ export const schemaParameter = Type.Intersect(
   { $id: "schemaParameter" }
 );
 
+export type schemaParameter = Static<typeof schemaParameter>;
+
 // TODO: fix header parameter recursion
 // Recursion from here through to mediaType -> encoding -> header -> parameter breaks typebox
 // Need to account for recursion https://github.com/sinclairzx81/typebox#types-recursive
@@ -70,3 +76,5 @@ export const parameter = Type.Intersect(
   ],
   { $id: "parameter" }
 );
+
+export type Parameter = Static<typeof parameter>;

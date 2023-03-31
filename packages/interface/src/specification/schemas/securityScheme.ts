@@ -1,4 +1,5 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
+import { type } from "os";
 
 export const securitySchemeType = Type.Union(
   [
@@ -10,10 +11,14 @@ export const securitySchemeType = Type.Union(
   { $id: "securitySchemeType" }
 );
 
+export type SecuritySchemeType = Static<typeof securitySchemeType>;
+
 export const securitySchemeName = Type.String({
   $id: "securitySchemeName",
   title: "Security Scheme Name",
 });
+
+export type SecuritySchemeName = Static<typeof securitySchemeName>;
 
 export const apiKeySecuritySchema = Type.Object(
   {
@@ -26,6 +31,8 @@ export const apiKeySecuritySchema = Type.Object(
   },
   { $id: "apiKeySecuritySchema" }
 );
+
+export type ApiKeySecuritySchema = Static<typeof apiKeySecuritySchema>;
 
 export const httpSecurityScheme = Type.Object(
   {
@@ -46,6 +53,8 @@ export const httpSecurityScheme = Type.Object(
   },
   { $id: "httpSecurityScheme" }
 );
+
+export type HttpSecurityScheme = Static<typeof httpSecurityScheme>;
 
 export const oauthSecurityScheme = Type.Object(
   {
@@ -99,6 +108,8 @@ export const oauthSecurityScheme = Type.Object(
   { $id: "oauthSecurityScheme" }
 );
 
+export type OauthSecurityScheme = Static<typeof oauthSecurityScheme>;
+
 export const openIdConnectSecurityScheme = Type.Object(
   {
     type: Type.Literal("openIdConnect"),
@@ -110,6 +121,10 @@ export const openIdConnectSecurityScheme = Type.Object(
   { $id: "openIdConnectSecurityScheme" }
 );
 
+export type OpenIdConnectSecurityScheme = Static<
+  typeof openIdConnectSecurityScheme
+>;
+
 export const securitySchemeBase = Type.Object(
   {
     type: securitySchemeType,
@@ -117,6 +132,8 @@ export const securitySchemeBase = Type.Object(
   },
   { $id: "securitySchemeBase" }
 );
+
+export type SecuritySchemeBase = Static<typeof securitySchemeBase>;
 
 export const securityScheme = Type.Union(
   [
@@ -130,3 +147,5 @@ export const securityScheme = Type.Union(
   ],
   { $id: "securityScheme" }
 );
+
+export type SecurityScheme = Static<typeof securityScheme>;

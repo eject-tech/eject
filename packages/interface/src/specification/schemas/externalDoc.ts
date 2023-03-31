@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const externalDoc = Type.Object(
   {
@@ -9,3 +9,5 @@ export const externalDoc = Type.Object(
   },
   { $id: "externalDoc" }
 );
+
+export type ExternalDoc = Static<typeof externalDoc>;

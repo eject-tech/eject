@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const ref = Type.Object(
   {
@@ -12,3 +12,5 @@ export const ref = Type.Object(
     additionalProperties: false,
   }
 );
+
+export type Ref = Static<typeof ref>;

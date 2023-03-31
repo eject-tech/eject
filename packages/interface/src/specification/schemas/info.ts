@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { license } from "./license";
 import { contact } from "./contact";
 
@@ -19,3 +19,5 @@ export const info = Type.Object(
     additionalProperties: false,
   }
 );
+
+export type Info = Static<typeof info>;

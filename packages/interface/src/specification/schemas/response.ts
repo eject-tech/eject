@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { header } from "./header";
 import { link } from "./link";
 import { mediaTypeKey, mediaType } from "./mediaType";
@@ -17,3 +17,5 @@ export const response = Type.Object(
   },
   { $id: "response" }
 );
+
+export type Response = Static<typeof response>;

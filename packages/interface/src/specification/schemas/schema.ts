@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 // import { externalDocs } from "./externalDocs";
 
 // Type this is any, given the input should be any valid JSON Schema
@@ -10,3 +10,5 @@ export const schema = Type.Any({ title: "Schema", $id: "schema" });
 //   externalDocs: Type.Optional(externalDocs),
 //   example: Type.Optional(Type.Any({ title: "Example" })),
 // });
+
+export type Schema = Static<typeof schema>;

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { callback } from "./callback";
 import { externalDoc } from "./externalDoc";
 import { parameter } from "./parameter";
@@ -32,3 +32,5 @@ export const operation = Type.Object(
   },
   { $id: "operation" }
 );
+
+export type Operation = Static<typeof operation>;

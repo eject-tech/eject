@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { encoding } from "./encoding";
 import { example } from "./example";
 import { ref } from "./ref";
@@ -10,6 +10,8 @@ export const mediaTypeKey = Type.String({
   format: "media-type",
 });
 
+export type MediaTypeKey = Static<typeof mediaTypeKey>;
+
 export const mediaType = Type.Object(
   {
     schema: Type.Ref(schema),
@@ -19,3 +21,5 @@ export const mediaType = Type.Object(
   },
   { $id: "mediaType" }
 );
+
+export type MediaType = Static<typeof mediaType>;

@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { externalDoc } from "./externalDoc";
 
 export const tags = Type.Object(
@@ -13,3 +13,5 @@ export const tags = Type.Object(
     additionalProperties: false,
   }
 );
+
+export type Tags = Static<typeof tags>;

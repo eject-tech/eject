@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { expression } from "./expression";
 import { server } from "./server";
 
@@ -22,3 +22,5 @@ export const link = Type.Object(
   },
   { $id: "link" }
 );
+
+export type Link = Static<typeof link>;

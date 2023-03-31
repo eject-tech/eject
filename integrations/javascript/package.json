@@ -1,6 +1,6 @@
 {
-  "name": "@eject/fastify",
-  "version": "1.0.3",
+  "name": "@eject/javascript-sdk",
+  "version": "1.0.0",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -15,12 +15,8 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "@eject/javascript-sdk": "workspace:*",
-    "@fastify/type-provider-typebox": "^3.0.0",
-    "@sinclair/typebox": "^0.26.6",
-    "@types/node": "^18.15.10",
-    "fastify": "^4.15.0",
-    "fastify-plugin": "^4.5.0"
+    "@eject/interface": "workspace:*",
+    "ky-universal": "^0.11.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.0.0",

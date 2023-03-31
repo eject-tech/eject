@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const contact = Type.Object(
   {
@@ -10,3 +10,5 @@ export const contact = Type.Object(
   },
   { $id: "contact" }
 );
+
+export type Contact = Static<typeof contact>;

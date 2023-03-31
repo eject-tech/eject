@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const server = Type.Object(
   {
@@ -22,3 +22,5 @@ export const server = Type.Object(
     title: "Server Variables",
   }
 );
+
+export type Server = Static<typeof server>;

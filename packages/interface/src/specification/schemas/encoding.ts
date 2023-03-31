@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { header } from "./header";
 import { ref } from "./ref";
 
@@ -15,3 +15,5 @@ export const encoding = Type.Object(
   },
   { $id: "encoding" }
 );
+
+export type Encoding = Static<typeof encoding>;

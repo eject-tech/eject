@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 import { securityScheme, securitySchemeName } from "./securityScheme";
 
 export const security = Type.Record(
@@ -8,3 +8,5 @@ export const security = Type.Record(
     $id: "security",
   }
 );
+
+export type Security = Static<typeof security>;

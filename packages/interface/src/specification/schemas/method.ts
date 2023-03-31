@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Type, Static } from "@sinclair/typebox";
 
 export const method = Type.Union(
   [
@@ -13,3 +13,5 @@ export const method = Type.Union(
   ],
   { $id: "method" }
 );
+
+export type Method = Static<typeof method>;

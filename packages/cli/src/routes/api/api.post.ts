@@ -2,7 +2,8 @@ import type { Api } from "../../api";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
 
-import { OpenAPIBuilder, schema } from "@eject/interface";
+import * as schema from "@eject/interface";
+import { OpenAPIBuilder } from "@eject/interface";
 
 export default (async (api: Api, details: RouteInfo) => {
   api.route({

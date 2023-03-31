@@ -1,4 +1,4 @@
-import { Type } from "@sinclair/typebox";
+import { Static, Type } from "@sinclair/typebox";
 
 import { callback } from "./schemas/callback";
 import { example } from "./schemas/example";
@@ -57,3 +57,5 @@ export const spec = Type.Object(
     additionalProperties: false,
   }
 );
+
+export type Spec = Static<typeof spec>;

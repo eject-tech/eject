@@ -1,5 +1,15 @@
-import { FastifyPluginAsync } from "fastify";
+import {
+  FastifyPluginAsync,
+  RouteOptions,
+  RawServerDefault,
+  RawRequestDefaultExpression,
+  RawReplyDefaultExpression,
+  RouteGenericInterface,
+} from "fastify";
 import fastifyPlugin from "fastify-plugin";
+import { EjectInterfaceAPI } from "@eject/javascript-sdk";
+import { TSchema } from "@sinclair/typebox";
+import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
 // TODO: should extend schema.operation
 type SpecDetails = {
@@ -30,10 +40,33 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
     title,
     ejectHost = process.env.EJECT_HOST || "http://localhost:3000",
   } = options;
-  const routes: any[] = [];
+
+  type RouteOption = RouteOptions<
+    RawServerDefault,
+    RawRequestDefaultExpression<RawServerDefault>,
+    RawReplyDefaultExpression,
+    RouteGenericInterface,
+    unknown,
+    TSchema & { details: SpecDetails },
+    TypeBoxTypeProvider
+  >;
+
+  const routes: RouteOptions<
+    RawServerDefault,
+    RawRequestDefaultExpression<RawServerDefault>,
+    RawReplyDefaultExpression,
+    RouteGenericInterface,
+    unknown,
+    TSchema & { details: SpecDetails },
+    TypeBoxTypeProvider
+  >[] = [];
+
+  const interfaceApi = new EjectInterfaceAPI({
+    prefixUrl: ejectHost,
+  });
 
   // Use this hook to fire off our schemas etc
-  fastify.addHook("onRoute", (routeOptions) => {
+  fastify.addHook("onRoute", (routeOptions: RouteOption) => {
     routes.push(routeOptions);
     console.log("Route registered: ", routeOptions.url, routeOptions.method);
   });
@@ -45,35 +78,26 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
 
     // TODO: temporary hack to work around no fastify support for onListen
     setTimeout(async () => {
-      const createAPI = await fetch(`${ejectHost}/api/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          version,
-          title,
-        }),
-      });
-
-      const response = await createAPI.json();
-
-      console.log(response);
+      const { key } = await interfaceApi.api.post({ version, title });
 
       for await (const route of routes) {
-        await fetch(`${ejectHost}/api/${response.key}/route`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
+        for await (const method of [
+          ...(typeof route.method === "string" ? [route.method] : route.method),
+        ]) {
+          console.log(route);
+
+          await interfaceApi.route.post(key, {
             url: route.url,
-            method: route.method.toLowerCase(),
+            method: method.toLowerCase() as Parameters<
+              typeof interfaceApi.route.post
+            >[1]["method"],
             operation: {
               summary: route.schema?.details.summary,
               description: route.schema?.details.description,
-              parameters: ,
-              requestBody: ,
+              // parameters: [
+              //   ...route.schema?.params,
+              // ],
+              // requestBody: ,
               responses: {
                 ...Object.assign(
                   {},
@@ -92,20 +116,9 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
                 ),
               },
             },
-          }),
-        });
+          });
+        }
       }
-
-      const getAPI = await fetch(`${ejectHost}/api/${response.key}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const spec = await getAPI.json();
-
-      console.log(JSON.stringify(spec, undefined, 2));
     }, 2500);
   });
 };
