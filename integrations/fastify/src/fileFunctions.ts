@@ -5,7 +5,7 @@ import {
   httpMethods,
   HTTPMethods,
   RouteInfo,
-} from "./plugin/routes";
+} from "./plugin/routes.js";
 
 /**
  * Recursively search a directory for files

@@ -1,5 +1,5 @@
 import { Static } from "@sinclair/typebox";
-import * as schema from "./specification";
+import * as schema from "./specification/index.js";
 
 import crypto from "crypto";
 

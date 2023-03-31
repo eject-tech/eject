@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { headerParameterBase } from "./parameter";
+import { headerParameterBase } from "./parameter.js";
 
 // TODO: fix header parameter recursion
 export const header = Type.Intersect(

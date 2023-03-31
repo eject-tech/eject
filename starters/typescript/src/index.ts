@@ -1,6 +1,6 @@
 import path from "path";
-import eject from "@eject/fastify";
-import { api } from "./api";
+import * as eject from "@eject/fastify";
+import { api } from "./api.js";
 
 // Build an API
 const start = async () => {

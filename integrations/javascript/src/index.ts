@@ -1,4 +1,5 @@
-import ky, { Options } from "ky-universal";
+import ky from "ky-universal";
+import type {Options} from "ky";
 import {
   Info,
   Method,
@@ -21,7 +22,7 @@ type KyOptionsKeys =
 export class EjectInterfaceAPI {
   private ky: typeof ky;
 
-  constructor(options: Pick<Options, KyOptionsKeys>) {
+  constructor(options: Partial<Pick<Options, KyOptionsKeys>>) {
     this.ky = ky.create(options);
     return this;
   }

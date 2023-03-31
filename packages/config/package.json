@@ -1,6 +1,7 @@
 {
   "name": "@eject/config",
   "version": "1.0.4",
+  "type": "module",
   "license": "MIT",
   "files": [
     "eslint-preset.js",

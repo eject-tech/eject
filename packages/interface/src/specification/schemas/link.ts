@@ -1,6 +1,6 @@
 import { Type, Static } from "@sinclair/typebox";
-import { expression } from "./expression";
-import { server } from "./server";
+import { expression } from "./expression.js";
+import { server } from "./server.js";
 
 export const link = Type.Object(
   {

@@ -1,6 +1,6 @@
 import { Type, Static } from "@sinclair/typebox";
-import { header } from "./header";
-import { ref } from "./ref";
+import { header } from "./header.js";
+import { ref } from "./ref.js";
 
 export const encoding = Type.Object(
   {

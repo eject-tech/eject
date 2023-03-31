@@ -1,8 +1,8 @@
 import { Type, Static } from "@sinclair/typebox";
-import { header } from "./header";
-import { link } from "./link";
-import { mediaTypeKey, mediaType } from "./mediaType";
-import { ref } from "./ref";
+import { header } from "./header.js";
+import { link } from "./link.js";
+import { mediaTypeKey, mediaType } from "./mediaType.js";
+import { ref } from "./ref.js";
 
 export const response = Type.Object(
   {

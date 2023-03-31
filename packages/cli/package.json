@@ -1,7 +1,8 @@
 {
   "name": "@eject/cli",
   "version": "1.0.4",
-  "main": "./build/cli.js",
+  "type": "module",
+  "exports": "./build/cli.js",
   "types": "./build/cli.d.ts",
   "license": "MIT",
   "bin": {

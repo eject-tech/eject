@@ -1,6 +1,9 @@
-import fs from "fs";
-import path from "path";
-import * as schema from "./specification";
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import * as schema from "./specification/index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 try {
   fs.mkdirSync(path.join(__dirname, "..", "json"));

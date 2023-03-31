@@ -1,2 +1,2 @@
-export * from "./plugin/interface";
-export * from "./plugin/routes";
+export * from "./plugin/interface.js";
+export * from "./plugin/routes.js";

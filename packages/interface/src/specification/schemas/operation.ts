@@ -1,12 +1,12 @@
 import { Type, Static } from "@sinclair/typebox";
-import { callback } from "./callback";
-import { externalDoc } from "./externalDoc";
-import { parameter } from "./parameter";
-import { ref } from "./ref";
-import { requestBody } from "./requestBody";
-import { response } from "./response";
-import { security } from "./security";
-import { server } from "./server";
+import { callback } from "./callback.js";
+import { externalDoc } from "./externalDoc.js";
+import { parameter } from "./parameter.js";
+import { ref } from "./ref.js";
+import { requestBody } from "./requestBody.js";
+import { response } from "./response.js";
+import { security } from "./security.js";
+import { server } from "./server.js";
 
 export const operation = Type.Object(
   {

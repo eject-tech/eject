@@ -1,9 +1,9 @@
 import { Type, Static } from "@sinclair/typebox";
-import { method } from "./method";
-import { operation } from "./operation";
-import { parameter } from "./parameter";
-import { ref } from "./ref";
-import { server } from "./server";
+import { method } from "./method.js";
+import { operation } from "./operation.js";
+import { parameter } from "./parameter.js";
+import { ref } from "./ref.js";
+import { server } from "./server.js";
 
 // TODO: fix formats issue
 export const pathItemName = Type.String({

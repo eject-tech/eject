@@ -1,7 +1,8 @@
 {
   "name": "@eject/interface",
   "version": "1.4.3",
-  "main": "./build/index.js",
+  "type": "module",
+  "exports": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
     "build",
@@ -32,6 +33,12 @@
         "src/": "build/"
       },
       "compile": false
-    }
+    },
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { externalDoc } from "./externalDoc";
+import { externalDoc } from "./externalDoc.js";
 
 export const tags = Type.Object(
   {

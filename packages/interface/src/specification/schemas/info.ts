@@ -1,6 +1,6 @@
 import { Type, Static } from "@sinclair/typebox";
-import { license } from "./license";
-import { contact } from "./contact";
+import { license } from "./license.js";
+import { contact } from "./contact.js";
 
 export const info = Type.Object(
   {

@@ -1,21 +1,21 @@
 import { Static, Type } from "@sinclair/typebox";
 
-import { callback } from "./schemas/callback";
-import { example } from "./schemas/example";
-import { header } from "./schemas/header";
-import { link } from "./schemas/link";
-import { parameter } from "./schemas/parameter";
-import { pathItem, pathItemName } from "./schemas/pathItem";
-import { requestBody } from "./schemas/requestBody";
-import { response } from "./schemas/response";
-import { schema } from "./schemas/schema";
-import { securityScheme } from "./schemas/securityScheme";
-import { info } from "./schemas/info";
-import { tags } from "./schemas/tags";
-import { ref } from "./schemas/ref";
-import { externalDoc } from "./schemas/externalDoc";
-import { security } from "./schemas/security";
-import { server } from "./schemas/server";
+import { callback } from "./schemas/callback.js";
+import { example } from "./schemas/example.js";
+import { header } from "./schemas/header.js";
+import { link } from "./schemas/link.js";
+import { parameter } from "./schemas/parameter.js";
+import { pathItem, pathItemName } from "./schemas/pathItem.js";
+import { requestBody } from "./schemas/requestBody.js";
+import { response } from "./schemas/response.js";
+import { schema } from "./schemas/schema.js";
+import { securityScheme } from "./schemas/securityScheme.js";
+import { info } from "./schemas/info.js";
+import { tags } from "./schemas/tags.js";
+import { ref } from "./schemas/ref.js";
+import { externalDoc } from "./schemas/externalDoc.js";
+import { security } from "./schemas/security.js";
+import { server } from "./schemas/server.js";
 
 export const spec = Type.Object(
   {

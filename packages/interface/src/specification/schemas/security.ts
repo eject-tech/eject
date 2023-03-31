@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { securityScheme, securitySchemeName } from "./securityScheme";
+import { securityScheme, securitySchemeName } from "./securityScheme.js";
 
 export const security = Type.Record(
   securitySchemeName,

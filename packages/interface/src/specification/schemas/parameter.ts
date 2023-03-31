@@ -1,8 +1,8 @@
 import { Type, Static } from "@sinclair/typebox";
-import { example } from "./example";
-import { mediaType, mediaTypeKey } from "./mediaType";
-import { ref } from "./ref";
-import { schema } from "./schema";
+import { example } from "./example.js";
+import { mediaType, mediaTypeKey } from "./mediaType.js";
+import { ref } from "./ref.js";
+import { schema } from "./schema.js";
 
 export const headerParameterBase = Type.Object(
   {

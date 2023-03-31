@@ -2,8 +2,8 @@
 // This should only run load routes, not start the server
 
 import path from "path";
-import eject from "@eject/fastify";
-import { api } from "./api";
+import * as eject from "@eject/fastify";
+import { api } from "./api.js";
 
 // Build an API
 const ejectSync = async () => {

@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { mediaType, mediaTypeKey } from "./mediaType";
+import { mediaType, mediaTypeKey } from "./mediaType.js";
 
 export const requestBody = Type.Object(
   {

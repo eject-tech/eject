@@ -1,5 +1,5 @@
 import test from "ava";
-import { OpenAPIBuilder } from "./builder";
+import { OpenAPIBuilder } from "./builder.js";
 
 test("writer can produce a valid openapi spec", async (t) => {
   const spec = new OpenAPIBuilder({

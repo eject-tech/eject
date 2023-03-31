@@ -1,8 +1,8 @@
 import { Type, Static } from "@sinclair/typebox";
-import { encoding } from "./encoding";
-import { example } from "./example";
-import { ref } from "./ref";
-import { schema } from "./schema";
+import { encoding } from "./encoding.js";
+import { example } from "./example.js";
+import { ref } from "./ref.js";
+import { schema } from "./schema.js";
 
 export const mediaTypeKey = Type.String({
   $id: "mediaTypeKey",

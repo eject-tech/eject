@@ -1,6 +1,7 @@
 {
   "name": "@eject/typescript",
   "version": "1.0.3",
+  "type": "module",
   "files": [
     "src",
     "package.json",
