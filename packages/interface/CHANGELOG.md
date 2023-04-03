@@ -1,5 +1,11 @@
 # @eject/interface
 
+## 1.5.0
+
+### Minor Changes
+
+- 656b444: Converted package to ESM and finalised early spec generation support
+
 ## 1.4.3
 
 ### Patch Changes

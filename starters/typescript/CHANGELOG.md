@@ -1,5 +1,16 @@
 # @eject/typescript
 
+## 1.1.0
+
+### Minor Changes
+
+- 656b444: Converted package to ESM and finalised early spec generation support
+
+### Patch Changes
+
+- Updated dependencies [656b444]
+  - @eject/fastify@1.1.0
+
 ## 1.0.3
 
 ### Patch Changes
