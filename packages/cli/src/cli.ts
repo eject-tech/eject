@@ -20,11 +20,13 @@ for (const schema of Object.values(interfaceSchema)) {
 }
 
 // Build an API
-await api.register(eject.ejectInterface, {
-  version: "0.0.1",
-  title: "Eject Interface API",
-  ejectHost: `http://localhost:${port}`,
-});
+if (process.env.EJECT_INTERNAL_GENERATION) {
+  await api.register(eject.ejectInterface, {
+    version: "0.0.1",
+    title: "Eject Interface API",
+    ejectHost: `http://localhost:${port}`,
+  });
+}
 
 // Register Eject routes plugin
 await api.register(eject.routes, {
