@@ -33,12 +33,6 @@
         "src/": "build/"
       },
       "compile": false
-    },
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=ts-node/esm"
-    ]
+    }
   }
 }

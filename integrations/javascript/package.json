@@ -13,7 +13,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "c8 ava"
+    "test": "echo 'Nothing to test yet, replace this with `c8 ava` when you add tests.';"
   },
   "dependencies": {
     "@eject/interface": "workspace:*",
@@ -33,12 +33,6 @@
         "src/": "build/"
       },
       "compile": false
-    },
-    "extensions": {
-      "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=ts-node/esm"
-    ]
+    }
   }
 }
