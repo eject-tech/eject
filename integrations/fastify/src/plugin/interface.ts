@@ -11,24 +11,22 @@ import { EjectInterfaceAPI } from "@eject/javascript-sdk";
 import { TSchema } from "@sinclair/typebox";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 
-// TODO: should extend schema.operation
-type SpecDetails = {
+interface EjectSpecDetails {
   description: string;
   summary: string;
   tags?: string[];
-};
+}
 
 // Enforce schema requirements on routes for spec generation
 declare module "fastify" {
   interface FastifySchema {
-    details: SpecDetails;
+    details: EjectSpecDetails;
   }
 }
 
-// TODO: this needs to come from schema.info - does schema need moving into a package?
-type EjectInterfacePluginOptions = {
-  version: string;
-  title: string;
+type EjectInterfacePluginOptions = Parameters<
+  EjectInterfaceAPI["api"]["post"]
+>[0] & {
   ejectHost?: string; // defaults to EJECT_HOST or localhost:3000
 };
 
@@ -41,32 +39,24 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
     ejectHost = process.env.EJECT_HOST || "http://localhost:3000",
   } = options;
 
-  type RouteOption = RouteOptions<
+  type EjectRouteOption = RouteOptions<
     RawServerDefault,
     RawRequestDefaultExpression<RawServerDefault>,
     RawReplyDefaultExpression,
     RouteGenericInterface,
     unknown,
-    TSchema & { details: SpecDetails },
+    TSchema & { details: EjectSpecDetails },
     TypeBoxTypeProvider
   >;
 
-  const routes: RouteOptions<
-    RawServerDefault,
-    RawRequestDefaultExpression<RawServerDefault>,
-    RawReplyDefaultExpression,
-    RouteGenericInterface,
-    unknown,
-    TSchema & { details: SpecDetails },
-    TypeBoxTypeProvider
-  >[] = [];
+  const routes: EjectRouteOption[] = [];
 
   const interfaceApi = new EjectInterfaceAPI({
     prefixUrl: ejectHost,
   });
 
   // Use this hook to fire off our schemas etc
-  fastify.addHook("onRoute", (routeOptions: RouteOption) => {
+  fastify.addHook("onRoute", (routeOptions: EjectRouteOption) => {
     routes.push(routeOptions);
     console.log("Route registered: ", routeOptions.url, routeOptions.method);
   });
@@ -74,9 +64,8 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
   // Use this hook to compile schemas once the API starts listening
   fastify.addHook("onReady", async () => {
     // Compile schemas
-    console.log("Compiling schemas...");
 
-    // TODO: temporary hack to work around no fastify support for onListen
+    // TODO: Hack to work around no fastify support for onListen, raise PR?
     setTimeout(async () => {
       const { key } = await interfaceApi.api.post({ version, title });
 

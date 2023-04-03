@@ -5,10 +5,9 @@ import { parameter } from "./parameter.js";
 import { ref } from "./ref.js";
 import { server } from "./server.js";
 
-// TODO: fix formats issue
 export const pathItemName = Type.String({
   $id: "#pathItemName",
-  title: "Path URI" /*, format: "uri"*/,
+  title: "Path URI",
 });
 
 export type PathItemName = Static<typeof pathItemName>;

@@ -13,10 +13,10 @@ export const operation = Type.Object(
     tags: Type.Optional(Type.Array(Type.String({ title: "Tag" }))),
     summary: Type.Optional(Type.String({ title: "Summary" })),
     description: Type.Optional(Type.String({ title: "Description" })),
-    // externalDocs: Type.Optional(Type.Ref(externalDoc)),
-    // operationId: Type.Optional(Type.String({ title: "Operation ID" })),
-    // parameters: Type.Optional(Type.Array(Type.Ref(parameter))),
-    // requestBody: Type.Optional(Type.Ref(requestBody)),
+    externalDocs: Type.Optional(Type.Ref(externalDoc)),
+    operationId: Type.Optional(Type.String({ title: "Operation ID" })),
+    parameters: Type.Optional(Type.Array(Type.Ref(parameter))),
+    requestBody: Type.Optional(Type.Ref(requestBody)),
     responses: Type.Record(
       Type.Number(),
       Type.Union([Type.Ref(response), Type.Ref(ref)])
@@ -26,15 +26,11 @@ export const operation = Type.Object(
     //   Type.String({ title: "Callback" }),
     //   Type.Ref(callback)
     // ),
-    // deprecated: Type.Optional(Type.Boolean({ title: "Deprecated" })),
-    // security: Type.Optional(Type.Ref(security)),
-    // servers: Type.Optional(Type.Array(Type.Ref(server))),
+    deprecated: Type.Optional(Type.Boolean({ title: "Deprecated" })),
+    security: Type.Optional(Type.Ref(security)),
+    servers: Type.Optional(Type.Array(Type.Ref(server))),
   },
   { $id: "#operation" }
 );
-
-console.log(JSON.stringify(Type.Strict(externalDoc), undefined, 2));
-
-console.log(JSON.stringify(Type.Strict(operation), undefined, 2));
 
 export type Operation = Static<typeof operation>;
