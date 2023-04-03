@@ -24,7 +24,7 @@ export const spec = Type.Object(
     servers: Type.Optional(
       Type.Array(Type.Ref(server), {
         title: "Servers",
-        $id: "servers",
+        $id: "#servers",
       })
     ),
     tags: Type.Optional(Type.Ref(tags)),
@@ -33,7 +33,10 @@ export const spec = Type.Object(
       minProperties: 1,
     }),
     webhooks: Type.Optional(
-      Type.Record(Type.String(), Type.Union([Type.Ref(pathItem), ref]))
+      Type.Record(
+        Type.String(),
+        Type.Union([Type.Ref(pathItem), Type.Ref(ref)])
+      )
     ),
     components: Type.Optional(
       Type.Object({
@@ -53,7 +56,6 @@ export const spec = Type.Object(
   },
   {
     title: "OpenAPI Specification",
-    $id: "openapi",
     additionalProperties: false,
   }
 );

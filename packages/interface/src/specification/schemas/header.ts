@@ -9,7 +9,7 @@ export const header = Type.Intersect(
     //     content: mediaType,
     //   }),
   ],
-  { $id: "header" }
+  { $id: "#header" }
 );
 
 export type Header = Static<typeof header>;

@@ -8,14 +8,14 @@ export const response = Type.Object(
   {
     description: Type.Optional(Type.String({ title: "Description" })),
     headers: Type.Optional(
-      Type.Record(Type.String(), Type.Union([Type.Ref(header), ref]))
+      Type.Record(Type.String(), Type.Union([Type.Ref(header), Type.Ref(ref)]))
     ),
     content: Type.Record(mediaTypeKey, Type.Ref(mediaType)),
     links: Type.Optional(
-      Type.Record(Type.String(), Type.Union([Type.Ref(link), ref]))
+      Type.Record(Type.String(), Type.Union([Type.Ref(link), Type.Ref(ref)]))
     ),
   },
-  { $id: "response" }
+  { $id: "#response" }
 );
 
 export type Response = Static<typeof response>;

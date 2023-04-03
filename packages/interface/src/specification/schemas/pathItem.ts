@@ -7,7 +7,7 @@ import { server } from "./server.js";
 
 // TODO: fix formats issue
 export const pathItemName = Type.String({
-  $id: "pathItemName",
+  $id: "#pathItemName",
   title: "Path URI" /*, format: "uri"*/,
 });
 
@@ -26,11 +26,13 @@ export const pathItem = Type.Intersect(
       summary: Type.Optional(Type.String({ title: "Summary" })),
       description: Type.Optional(Type.String({ title: "Description" })),
       servers: Type.Optional(Type.Array(Type.Ref(server))),
-      parameters: Type.Optional(Type.Union([Type.Ref(parameter), ref])),
+      parameters: Type.Optional(
+        Type.Union([Type.Ref(parameter), Type.Ref(ref)])
+      ),
     }),
     pathItemOperations,
   ],
-  { $id: "pathItem" }
+  { $id: "#pathItem" }
 );
 
 export type PathItem = Static<typeof pathItem>;

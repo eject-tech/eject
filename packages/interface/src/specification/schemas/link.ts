@@ -20,7 +20,7 @@ export const link = Type.Object(
     description: Type.Optional(Type.String({ title: "Description" })),
     server: Type.Optional(Type.Ref(server)),
   },
-  { $id: "link" }
+  { $id: "#link" }
 );
 
 export type Link = Static<typeof link>;

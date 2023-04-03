@@ -3,7 +3,7 @@ import { Type, Static } from "@sinclair/typebox";
 
 // Type this is any, given the input should be any valid JSON Schema
 // Then run directly through the JSON Schema validator as is
-export const schema = Type.Any({ title: "Schema", $id: "schema" });
+export const schema = Type.Any({ title: "Schema", $id: "#schema" });
 
 // export const schema = Type.Object({
 //   //   discriminator: Type.Optional(Type.String({ title: "Discriminator" })),

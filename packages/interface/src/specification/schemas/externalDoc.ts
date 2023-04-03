@@ -7,7 +7,7 @@ export const externalDoc = Type.Object(
     ),
     url: Type.String({ title: "External Doc URL", format: "uri" }),
   },
-  { $id: "externalDoc" }
+  { title: "External documentation", $id: "#externalDoc" }
 );
 
 export type ExternalDoc = Static<typeof externalDoc>;

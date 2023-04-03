@@ -5,7 +5,7 @@ export const security = Type.Record(
   securitySchemeName,
   Type.Ref(securityScheme),
   {
-    $id: "security",
+    $id: "#security",
   }
 );
 

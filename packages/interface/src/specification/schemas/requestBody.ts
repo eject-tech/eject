@@ -9,7 +9,7 @@ export const requestBody = Type.Object(
     ),
     content: Type.Record(mediaTypeKey, Type.Ref(mediaType)),
   },
-  { $id: "requestBody" }
+  { $id: "#requestBody" }
 );
 
 export type RequestBody = Static<typeof requestBody>;

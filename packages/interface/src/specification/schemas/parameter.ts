@@ -15,9 +15,11 @@ export const headerParameterBase = Type.Object(
     explode: Type.Optional(Type.Boolean({ title: "Explode" })),
     allowReserved: Type.Optional(Type.Boolean({ title: "Allow Reserved" })),
     example: Type.Optional(Type.Any({ title: "Example" })),
-    examples: Type.Optional(Type.Array(Type.Union([Type.Ref(example), ref]))),
+    examples: Type.Optional(
+      Type.Array(Type.Union([Type.Ref(example), Type.Ref(ref)]))
+    ),
   },
-  { $id: "headerParameterBase" }
+  { $id: "#headerParameterBase" }
 );
 
 export type HeaderParameterBase = Static<typeof headerParameterBase>;
@@ -35,7 +37,7 @@ export const parameterBase = Type.Intersect(
     }),
     headerParameterBase,
   ],
-  { $id: "parameterBase" }
+  { $id: "#parameterBase" }
 );
 
 export type ParameterBase = Static<typeof parameterBase>;
@@ -59,7 +61,7 @@ export const schemaParameter = Type.Intersect(
       ),
     }),
   ],
-  { $id: "schemaParameter" }
+  { $id: "#schemaParameter" }
 );
 
 export type schemaParameter = Static<typeof schemaParameter>;
@@ -74,7 +76,7 @@ export const parameter = Type.Intersect(
       content: Type.Record(mediaTypeKey, Type.Ref(mediaType)),
     }),
   ],
-  { $id: "parameter" }
+  { $id: "#parameter" }
 );
 
 export type Parameter = Static<typeof parameter>;

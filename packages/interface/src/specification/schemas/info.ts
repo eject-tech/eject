@@ -14,7 +14,7 @@ export const info = Type.Object(
     license: Type.Optional(Type.Ref(license)),
   },
   {
-    $id: "info",
+    $id: "#info",
     title: "API Information",
     additionalProperties: false,
   }

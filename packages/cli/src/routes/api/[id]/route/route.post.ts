@@ -1,7 +1,12 @@
 import { Api } from "../../../../api.js";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
-import { OpenAPIBuilder, schema } from "@eject/interface";
+import {
+  OpenAPIBuilder,
+  pathItemName,
+  method,
+  operation,
+} from "@eject/interface";
 
 export default (async (api: Api, details: RouteInfo) => {
   api.route({
@@ -12,9 +17,9 @@ export default (async (api: Api, details: RouteInfo) => {
         summary: "Register a new endpoint",
       },
       body: Type.Object({
-        url: schema.pathItemName,
-        method: schema.method,
-        operation: schema.operation,
+        url: pathItemName,
+        method: method,
+        operation: operation,
       }),
       params: Type.Object({
         id: Type.String(),

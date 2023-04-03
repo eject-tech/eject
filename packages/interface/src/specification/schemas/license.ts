@@ -6,7 +6,7 @@ export const license = Type.Object(
     identifier: Type.Optional(Type.String({ title: "License Identifier" })),
     url: Type.Optional(Type.String({ title: "License URL", format: "uri" })),
   },
-  { $id: "license" }
+  { $id: "#license" }
 );
 
 export type License = Static<typeof license>;

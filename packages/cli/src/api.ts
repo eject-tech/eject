@@ -11,10 +11,10 @@ export const api = fastify({
   ajv: {
     customOptions: {
       removeAdditional: true,
+      uriResolver: undefined,
     },
   },
-})
-  .withTypeProvider<TypeBoxTypeProvider>()
-  .setValidatorCompiler(TypeBoxValidatorCompiler);
-
+}).withTypeProvider<TypeBoxTypeProvider>();
+// .setValidatorCompiler(TypeBoxValidatorCompiler);
+// TODO: The above line breaks schema validation/derefencing. Do we need it? Remove?
 export type Api = typeof api;

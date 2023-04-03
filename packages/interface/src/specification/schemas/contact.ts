@@ -8,7 +8,7 @@ export const contact = Type.Object(
       Type.String({ title: "Contact Email", format: "email" })
     ),
   },
-  { $id: "contact" }
+  { $id: "#contact" }
 );
 
 export type Contact = Static<typeof contact>;

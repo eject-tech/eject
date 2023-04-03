@@ -7,7 +7,7 @@ export const example = Type.Object(
     value: Type.Optional(Type.Any({ title: "Value" })),
     externalValue: Type.Optional(Type.String({ title: "External Value" })),
   },
-  { $id: "example" }
+  { $id: "#example" }
 );
 
 export type Example = Static<typeof example>;

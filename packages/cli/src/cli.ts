@@ -2,11 +2,22 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import * as eject from "@eject/fastify";
+import * as interfaceSchema from "@eject/interface";
 import { api } from "./api.js";
+import { TSchema, Type } from "@sinclair/typebox";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const port = parseInt(process.env.PORT || "3000");
+
+// Add the schema refs to the API
+for (const schema of Object.values(interfaceSchema)) {
+  if (!(schema as TSchema)["$id"]) {
+    continue;
+  }
+
+  api.addSchema(Type.Strict(schema as TSchema));
+}
 
 // Build an API
 await api.register(eject.ejectInterface, {

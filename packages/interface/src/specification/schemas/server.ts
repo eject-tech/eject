@@ -18,7 +18,7 @@ export const server = Type.Object(
     ),
   },
   {
-    $id: "server",
+    $id: "#server",
     title: "Server Variables",
   }
 );

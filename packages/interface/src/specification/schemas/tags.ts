@@ -5,10 +5,10 @@ export const tags = Type.Object(
   {
     name: Type.String({ title: "API Tag Name" }),
     description: Type.Optional(Type.String({ title: "API Tag Description" })),
-    externalDocs: Type.Optional(externalDoc),
+    externalDocs: Type.Optional(Type.Ref(externalDoc)),
   },
   {
-    $id: "tags",
+    $id: "#tags",
     title: "API Tags",
     additionalProperties: false,
   }

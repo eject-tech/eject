@@ -17,14 +17,14 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.26.6",
-    "@types/node": "^18.15.10"
+    "@sinclair/typebox": "^0.26.8",
+    "@types/node": "^18.15.11"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
     "ava": "^5.2.0",
     "c8": "^7.13.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   },
   "ava": {
     "verbose": true,

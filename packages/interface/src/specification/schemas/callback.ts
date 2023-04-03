@@ -5,9 +5,9 @@ import { ref } from "./ref.js";
 
 export const callback = Type.Record(
   expression,
-  Type.Union([Type.Ref(pathItem), ref]),
+  Type.Union([Type.Ref(pathItem), Type.Ref(ref)]),
   {
-    $id: "callback",
+    $id: "#callback",
   }
 );
 
