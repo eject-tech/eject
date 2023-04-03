@@ -1,9 +1,9 @@
-import type { Api } from "../api";
+import { Api } from "../../api.js";
 import type { RouteHandler, RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
 
-// import openApiSpecs from "@apidevtools/openapi-schemas";
-// const { v31 } = openApiSpecs;
+import * as schema from "@eject/interface";
+import { OpenAPIBuilder } from "@eject/interface";
 
 export default (async (api: Api, details: RouteInfo) => {
   api.route({
@@ -13,19 +13,7 @@ export default (async (api: Api, details: RouteInfo) => {
         description: "",
         summary: "Register a new API",
       },
-      body: Type.Object({
-        info: Type.Object(
-          {
-            title: Type.String({ title: "API Title" }),
-            version: Type.String({ title: "API Version" }),
-          },
-          {
-            additionalProperties: false,
-            description: "API Information",
-          }
-        ) /* satisfies typeof v31["info"]*/,
-        defaults: Type.Object({}),
-      }),
+      body: schema.info,
       response: {
         200: Type.Object(
           {
@@ -42,7 +30,12 @@ export default (async (api: Api, details: RouteInfo) => {
     },
     handler: async (request, reply) => {
       // Create the API in the local database
-      reply.send({ key: "true" });
+      const openAPI = new OpenAPIBuilder(request.body);
+
+      openAPI.save();
+
+      // Return the ID of the API
+      reply.send({ key: openAPI.key });
     },
   });
 }) satisfies RouteHandler;

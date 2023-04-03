@@ -1,4 +1,2 @@
-export * from "./plugin/hooks";
-export * from "./plugin/routes";
-
-export default exports;
+export * from "./plugin/interface.js";
+export * from "./plugin/routes.js";

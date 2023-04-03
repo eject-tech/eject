@@ -1,0 +1,44 @@
+{
+  "name": "@eject/javascript-sdk",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "files": [
+    "build",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "c8 ava"
+  },
+  "dependencies": {
+    "@eject/interface": "workspace:*",
+    "ky-universal": "^0.11.0"
+  },
+  "devDependencies": {
+    "@ava/typescript": "^4.0.0",
+    "@eject/config": "workspace:*",
+    "ava": "^5.2.0",
+    "c8": "^7.13.0",
+    "ky": "^0.33.3",
+    "typescript": "^5.0.3"
+  },
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "src/": "build/"
+      },
+      "compile": false
+    },
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
+  }
+}

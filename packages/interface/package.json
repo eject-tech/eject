@@ -1,7 +1,8 @@
 {
   "name": "@eject/interface",
   "version": "1.4.3",
-  "main": "./build/index.js",
+  "type": "module",
+  "exports": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
     "build",
@@ -10,20 +11,34 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node build/generate-json-schemas.js",
     "dev": "tsc -w",
-    "start": "node --watch ./build/index.js"
+    "start": "node --watch ./build/index.js",
+    "test": "c8 ava"
   },
   "dependencies": {
-    "@apidevtools/openapi-schemas": "^2.1.0",
-    "@eject/fastify": "workspace:*",
-    "@fastify/type-provider-typebox": "^2.4.0",
-    "@sinclair/typebox": "^0.25.24",
-    "@types/node": "^18.15.3",
-    "fastify": "^4.14.1"
+    "@sinclair/typebox": "^0.26.8",
+    "@types/node": "^18.15.11"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
-    "typescript": "^4.9.5"
+    "ava": "^5.2.0",
+    "c8": "^7.13.0",
+    "typescript": "^5.0.3"
+  },
+  "ava": {
+    "verbose": true,
+    "typescript": {
+      "rewritePaths": {
+        "src/": "build/"
+      },
+      "compile": false
+    },
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
   }
 }

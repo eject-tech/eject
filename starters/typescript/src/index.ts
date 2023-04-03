@@ -1,10 +1,10 @@
 import path from "path";
-import eject from "@eject/fastify";
-import { api } from "./api";
+import * as eject from "@eject/fastify";
+import { api } from "./api.js";
 
 // Build an API
 const start = async () => {
-  await api.register(eject.hooks);
+  await api.register(eject.ejectInterface);
 
   // Register Eject routes plugin
   await api.register(eject.routes, {

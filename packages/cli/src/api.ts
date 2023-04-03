@@ -8,8 +8,12 @@ import {
 export const api = fastify({
   logger: true,
   ignoreTrailingSlash: true,
-})
-  .withTypeProvider<TypeBoxTypeProvider>()
-  .setValidatorCompiler(TypeBoxValidatorCompiler);
+  ajv: {
+    customOptions: {
+      removeAdditional: true,
+      uriResolver: undefined,
+    },
+  },
+}).withTypeProvider<TypeBoxTypeProvider>();
 
 export type Api = typeof api;

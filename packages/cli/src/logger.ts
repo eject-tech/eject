@@ -34,7 +34,6 @@ export class EjectLogger {
   private readonly scopeWidth: number = 15;
   private readonly labelWidth: number = 9;
 
-  // @TODO: any idea how to make these dynamic from levels above?
   log!: LogFunction;
   error!: LogFunction;
   warn!: LogFunction;

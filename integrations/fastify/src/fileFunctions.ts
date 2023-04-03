@@ -5,7 +5,7 @@ import {
   httpMethods,
   HTTPMethods,
   RouteInfo,
-} from "./plugin/routes";
+} from "./plugin/routes.js";
 
 /**
  * Recursively search a directory for files
@@ -30,7 +30,7 @@ export async function* findFiles(
   }
 }
 
-// @todo: refactor this, it can be more readable
+// TODO: refactor this, it can be more readable
 export const getRouteInfoFromPath = (
   filePath: string,
   routePath: string

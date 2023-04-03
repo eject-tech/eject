@@ -1,5 +1,5 @@
 import test from "ava";
-import { getRouteInfoFromPath } from "./fileFunctions";
+import { getRouteInfoFromPath } from "./fileFunctions.js";
 
 const tests = [
   {

@@ -1,8 +1,7 @@
 {
   "extends": "@eject/config/base.tsconfig.json",
   "compilerOptions": {
-    "outDir": "build",
-    "module": "commonjs"
+    "outDir": "build"
   },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]

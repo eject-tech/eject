@@ -1,6 +1,7 @@
 {
   "name": "@eject/typescript",
   "version": "1.0.3",
+  "type": "module",
   "files": [
     "src",
     "package.json",
@@ -16,13 +17,13 @@
   },
   "dependencies": {
     "@eject/fastify": "workspace:*",
-    "@fastify/type-provider-typebox": "^2.4.0",
-    "@sinclair/typebox": "^0.25.24",
-    "@types/node": "^18.15.3",
-    "fastify": "^4.14.1"
+    "@fastify/type-provider-typebox": "^3.0.0",
+    "@sinclair/typebox": "^0.26.8",
+    "@types/node": "^18.15.11",
+    "fastify": "^4.15.0"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.3"
   }
 }

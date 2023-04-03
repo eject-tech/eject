@@ -18,8 +18,8 @@
     "release": "pnpm -w exec changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "prettier": "^2.8.4",
+    "@changesets/cli": "^2.26.1",
+    "prettier": "^2.8.7",
     "turbo": "latest"
   },
   "engines": {
