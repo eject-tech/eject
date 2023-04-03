@@ -26,7 +26,7 @@ export const pathItem = Type.Intersect(
       description: Type.Optional(Type.String({ title: "Description" })),
       servers: Type.Optional(Type.Array(Type.Ref(server))),
       parameters: Type.Optional(
-        Type.Union([Type.Ref(parameter), Type.Ref(ref)])
+        Type.Array(Type.Union([Type.Ref(parameter), Type.Ref(ref)]))
       ),
     }),
     pathItemOperations,

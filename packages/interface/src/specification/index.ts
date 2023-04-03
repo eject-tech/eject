@@ -1,4 +1,5 @@
 export * from "./schemas/callback.js";
+export * from "./schemas/component.js";
 export * from "./schemas/contact.js";
 export * from "./schemas/encoding.js";
 export * from "./schemas/example.js";

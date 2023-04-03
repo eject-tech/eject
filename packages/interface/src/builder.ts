@@ -2,6 +2,12 @@ import { Static } from "@sinclair/typebox";
 import * as schema from "./specification/index.js";
 
 import crypto from "crypto";
+import { Spec } from "./specification/index.js";
+import {
+  Component,
+  componentPluralMap,
+  ComponentType,
+} from "./specification/schemas/component.js";
 
 // Create an internal queue of file operations to ensure that only one operation is happening at a time
 // type OmitPrivateActions = "get" | "create" | "process";
@@ -69,5 +75,28 @@ export class OpenAPIBuilder {
     };
 
     return this;
+  }
+
+  public addComponent(
+    componentType: ComponentType,
+    name: string,
+    component: Component
+  ) {
+    if (!this.specification.components) {
+      this.specification.components = {} as const;
+    }
+
+    const pluralisedType = componentPluralMap[componentType];
+
+    if (!this.specification.components[pluralisedType]) {
+      this.specification.components[pluralisedType] = {};
+    }
+
+    if (this.specification.components[pluralisedType]) {
+      //@ts-ignore
+      this.specification.components[pluralisedType][name] = component;
+    }
+
+    return `#/components/${componentType}/${name}`;
   }
 }

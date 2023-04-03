@@ -1,21 +1,13 @@
 import { Static, Type } from "@sinclair/typebox";
 
-import { callback } from "./schemas/callback.js";
-import { example } from "./schemas/example.js";
-import { header } from "./schemas/header.js";
-import { link } from "./schemas/link.js";
-import { parameter } from "./schemas/parameter.js";
 import { pathItem, pathItemName } from "./schemas/pathItem.js";
-import { requestBody } from "./schemas/requestBody.js";
-import { response } from "./schemas/response.js";
-import { schema } from "./schemas/schema.js";
-import { securityScheme } from "./schemas/securityScheme.js";
 import { info } from "./schemas/info.js";
 import { tags } from "./schemas/tags.js";
 import { ref } from "./schemas/ref.js";
 import { externalDoc } from "./schemas/externalDoc.js";
 import { security } from "./schemas/security.js";
 import { server } from "./schemas/server.js";
+import { components } from "./schemas/component.js";
 
 export const spec = Type.Object(
   {
@@ -38,20 +30,7 @@ export const spec = Type.Object(
         Type.Union([Type.Ref(pathItem), Type.Ref(ref)])
       )
     ),
-    components: Type.Optional(
-      Type.Object({
-        schemas: Type.Optional(Type.Array(Type.Ref(schema))),
-        responses: Type.Optional(Type.Array(Type.Ref(response))),
-        parameters: Type.Optional(Type.Array(Type.Ref(parameter))),
-        examples: Type.Optional(Type.Array(Type.Ref(example))),
-        requestBodies: Type.Optional(Type.Array(Type.Ref(requestBody))),
-        headers: Type.Optional(Type.Array(Type.Ref(header))),
-        securitySchemes: Type.Optional(Type.Array(Type.Ref(securityScheme))),
-        links: Type.Optional(Type.Array(Type.Ref(link))),
-        callbacks: Type.Optional(Type.Array(Type.Ref(callback))),
-        pathItems: Type.Optional(Type.Array(Type.Ref(pathItem))),
-      })
-    ),
+    components: Type.Optional(Type.Ref(components)),
     security: Type.Optional(Type.Ref(security)),
   },
   {
