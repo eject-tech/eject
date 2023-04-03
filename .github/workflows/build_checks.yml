@@ -1,4 +1,4 @@
-name: Generate Change Files
+name: Continous Integration
 
 on:
   pull_request:
