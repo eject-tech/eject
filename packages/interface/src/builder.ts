@@ -93,6 +93,7 @@ export class OpenAPIBuilder {
     }
 
     if (this.specification.components[pluralisedType]) {
+      // TODO: resolve this ts-ignore issue
       //@ts-ignore
       this.specification.components[pluralisedType][name] = component;
     }
