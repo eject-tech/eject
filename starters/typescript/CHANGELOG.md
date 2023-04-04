@@ -1,5 +1,16 @@
 # @eject/typescript
 
+## 1.2.0
+
+### Minor Changes
+
+- fd04e4b: Added initial CLI support for Ejection
+
+### Patch Changes
+
+- Updated dependencies [fd04e4b]
+  - @eject/fastify@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
