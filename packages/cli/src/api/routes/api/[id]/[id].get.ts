@@ -1,10 +1,10 @@
-import { Api } from "../../../api.js";
-import type { RouteHandler, RouteInfo } from "@eject/fastify";
+import type { Api } from "../../../api.js";
+import type { RouteInfo } from "@eject/fastify";
 import { Type } from "@sinclair/typebox";
 
 import { OpenAPIBuilder, schema } from "@eject/interface";
 
-export default (async (api: Api, details: RouteInfo) => {
+export default async (api: Api, details: RouteInfo) => {
   api.route({
     ...details,
     schema: {
@@ -27,4 +27,4 @@ export default (async (api: Api, details: RouteInfo) => {
       reply.send(openAPI.print());
     },
   });
-}) satisfies RouteHandler;
+};
