@@ -1,5 +1,11 @@
 # @eject/cli
 
+## 1.2.0
+
+### Minor Changes
+
+- fd04e4b: Added initial CLI support for Ejection
+
 ## 1.1.0
 
 ### Minor Changes
