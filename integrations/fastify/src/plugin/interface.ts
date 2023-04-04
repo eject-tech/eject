@@ -60,7 +60,6 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
   // Use this hook to fire off our schemas etc
   fastify.addHook("onRoute", (routeOptions: EjectRouteOption) => {
     routes.push(routeOptions);
-    console.log("Route registered: ", routeOptions.url, routeOptions.method);
   });
 
   // Use this hook to compile schemas once the API starts listening
@@ -167,12 +166,7 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
         }
       }
 
-      if (specOutput) {
-        await fs.writeFile(
-          specOutput,
-          JSON.stringify(await interfaceApi.api.get(key), undefined, 2)
-        );
-      }
+      await interfaceApi.close();
     }, 2500);
   });
 };
