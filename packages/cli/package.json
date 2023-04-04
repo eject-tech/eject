@@ -6,8 +6,7 @@
   "types": "./build/cli.d.ts",
   "license": "MIT",
   "bin": {
-    "@eject/cli": "bin/eject",
-    "eject": "bin/eject"
+    "eject": "build/cli.js"
   },
   "files": [
     "build",
