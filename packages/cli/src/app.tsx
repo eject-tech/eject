@@ -4,6 +4,9 @@ import { useInput, Static, Box, Text, Newline } from "ink";
 import { startEjectCLIAPI } from "./api/api.js";
 import type { Commands, Options } from "./cli.js";
 import { getAllBuilders } from "@eject/interface";
+import childProcess from "node:child_process";
+import { promisify } from "node:util";
+const exec = promisify(childProcess.exec);
 
 type Props = {
   command: Commands;
@@ -43,6 +46,14 @@ export default function App({
       });
 
       await cliapi.listen({ port: options.port });
+
+      if (options.exec) {
+        try {
+          const { stdout, stderr } = await exec(options.exec);
+        } catch (e) {
+          console.error(e); // should contain code (exit code) and signal (that caused the termination).
+        }
+      }
     })();
 
     return () => {

@@ -13,17 +13,26 @@ export type Commands = (typeof commands)[number][0];
 
 export const options = {
   port: {
-    description: "Port to run the development server on",
+    description: "Port to run the Eject interface on",
     flag: {
       type: "number",
       default: 3734,
       alias: "p",
     },
   },
+  exec: {
+    description:
+      "Command to execute which communicates with the Eject interface",
+    flag: {
+      type: "string",
+      alias: "e",
+    },
+  },
 } as const;
 
 export type Options = {
   port?: number;
+  exec?: string;
 };
 
 const cli = meow(
@@ -52,6 +61,9 @@ ${Object.entries(options)
       port: {
         type: "number",
         default: 3734,
+      },
+      exec: {
+        type: "string",
       },
     },
   }

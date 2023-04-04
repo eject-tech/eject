@@ -14,7 +14,7 @@
     "build": "tsc",
     "dev": "tsc -w",
     "start": "node --watch ./build/index.js",
-    "eject": "eject"
+    "eject": "eject --exec \"node ./build/eject.js\""
   },
   "dependencies": {
     "@eject/fastify": "workspace:*",
