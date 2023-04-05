@@ -30,8 +30,6 @@ Want to know more about Eject, setup or integrate a project, or browse our docum
 
 Packages within this monorepo are separated into 4 categories; "packages", "integrations", "generators", and "starters". Packages contains everything core to Eject such as the CLI and interface, whilst generators has Eject maintained output generators, and starters help you to get up and running with Eject quickly.
 
-## Packages
-
 **Packages:**
 
 - [@eject/config](./packages/config/): Shared config files for utilisation in Eject packages; both internal and third-party.
@@ -66,6 +64,16 @@ To run this project locally we recommend the following steps:
 - Clone the repository to a local folder
 - Install dependencies with `pnpm i`
 - Open a terminal/shell window and run `pnpm dev` to build and watch all packages
+
+We welcome contributions to this project, please read our [contributing guidelines](./CONTRIBUTING.md) before submitting a pull request.
+
+Pull requests will require an accompany [changeset](https://github.com/atlassian/changesets) to be added to the pull request. This will ensure that the correct version of the package is published. To add a changeset, run the following command:
+
+```bash
+pnpm changeset
+```
+
+If you wish to push a change which does not make any changes to the packages, you can add the `--empty` flag to the command above.
 
 ## Tools
 

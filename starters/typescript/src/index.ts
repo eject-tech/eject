@@ -1,6 +1,9 @@
-import path from "path";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import * as eject from "@eject/fastify";
 import { api } from "./api.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Register Eject routes plugin
 await api.register(eject.routes, {

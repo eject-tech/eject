@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { fastifyPlugin } from "fastify-plugin";
-import { Dirent } from "fs";
+import { Dirent } from "node:fs";
 import { findFiles, getRouteInfoFromPath } from "../fileFunctions.js";
 
 export interface DirentWithPath extends Dirent {

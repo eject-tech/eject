@@ -4,11 +4,8 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import * as eject from "@eject/fastify";
 import { api } from "./api.js";
-import { setTimeout } from "node:timers/promises";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-console.log("starting eject starter");
 
 // Build an API
 await api.register(eject.ejectInterface, {
