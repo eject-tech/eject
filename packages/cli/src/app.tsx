@@ -50,7 +50,9 @@ export default function App({
       if (options.exec) {
         try {
           const { stdout, stderr } = await exec(options.exec);
+          // TODO: surface logs to CLI tool
         } catch (e) {
+          // TODO: surface errors to CLI tool
           console.error(e); // should contain code (exit code) and signal (that caused the termination).
         }
       }
