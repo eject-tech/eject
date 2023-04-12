@@ -1,5 +1,11 @@
 # @eject/fastify
 
+## 1.3.0
+
+### Minor Changes
+
+- 944082c: Fixed issue with route loading
+
 ## 1.2.0
 
 ### Minor Changes

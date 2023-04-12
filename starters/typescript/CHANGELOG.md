@@ -1,5 +1,12 @@
 # @eject/typescript
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [944082c]
+  - @eject/fastify@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes
