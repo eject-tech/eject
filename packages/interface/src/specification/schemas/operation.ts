@@ -1,7 +1,7 @@
 import { Type, Static } from "@sinclair/typebox";
 import { callback } from "./callback.js";
 import { externalDoc } from "./externalDoc.js";
-import { parameter } from "./parameter.js";
+import { schemaParameter } from "./parameter.js";
 import { ref } from "./ref.js";
 import { requestBody } from "./requestBody.js";
 import { response } from "./response.js";
@@ -15,7 +15,7 @@ export const operation = Type.Object(
     description: Type.Optional(Type.String({ title: "Description" })),
     externalDocs: Type.Optional(Type.Ref(externalDoc)),
     operationId: Type.Optional(Type.String({ title: "Operation ID" })),
-    parameters: Type.Optional(Type.Array(Type.Ref(parameter))),
+    parameters: Type.Optional(Type.Array(Type.Ref(schemaParameter))),
     requestBody: Type.Optional(Type.Ref(requestBody)),
     responses: Type.Record(
       Type.Number(),
