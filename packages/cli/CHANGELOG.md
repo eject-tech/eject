@@ -1,5 +1,11 @@
 # @eject/cli
 
+## 1.3.0
+
+### Minor Changes
+
+- 0fdbebc: CI fix for stdin input
+
 ## 1.2.0
 
 ### Minor Changes

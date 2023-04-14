@@ -1,5 +1,11 @@
 # @eject/interface
 
+## 1.7.0
+
+### Minor Changes
+
+- 0fdbebc: CI fix for stdin input
+
 ## 1.6.0
 
 ### Minor Changes

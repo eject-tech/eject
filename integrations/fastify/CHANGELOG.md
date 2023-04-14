@@ -1,5 +1,16 @@
 # @eject/fastify
 
+## 1.4.0
+
+### Minor Changes
+
+- 0fdbebc: CI fix for stdin input
+
+### Patch Changes
+
+- Updated dependencies [0fdbebc]
+  - @eject/javascript-sdk@1.3.0
+
 ## 1.3.0
 
 ### Minor Changes
