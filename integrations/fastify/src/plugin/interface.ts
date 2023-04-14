@@ -31,6 +31,11 @@ type EjectInterfacePluginOptions = Parameters<
   ejectHost?: string; // defaults to EJECT_HOST or localhost:3000
 };
 
+const refStringTransformation = (ref: string) =>
+  ref.startsWith("#/components/schemas/")
+    ? ref
+    : `#/components/schemas/${ref.replace("#", "")}`;
+
 const EjectInterfacePluginCallback: FastifyPluginAsync<
   EjectInterfacePluginOptions
 > = async (fastify, options) => {
@@ -72,10 +77,7 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
         const [schemaKey, schemaValue] = schema;
         await interfaceApi.components.post(key, "schema", {
           name: schemaKey.replace("#", ""),
-          component: transformRefs(
-            schemaValue,
-            (ref) => `#/components/schemas/${ref.replace("#", "")}`
-          ),
+          component: transformRefs(schemaValue, refStringTransformation),
         });
       }
 
@@ -86,14 +88,7 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
           in: target,
           required: value.required || target === "path" ? true : false,
           description: value?.description,
-          content: {
-            "application/json": {
-              schema: transformRefs(
-                value,
-                (ref) => `#/components/schemas/${ref.replace("#", "")}`
-              ),
-            },
-          },
+          schema: transformRefs(value, refStringTransformation),
         });
 
       for await (const route of routes) {
@@ -131,8 +126,7 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
                         "application/json": {
                           schema: transformRefs(
                             route.schema?.body,
-                            (ref) =>
-                              `#/components/schemas/${ref.replace("#", "")}`
+                            refStringTransformation
                           ),
                         },
                       },
@@ -149,8 +143,7 @@ const EjectInterfacePluginCallback: FastifyPluginAsync<
                           "application/json": {
                             schema: transformRefs(
                               value,
-                              (ref) =>
-                                `#/components/schemas/${ref.replace("#", "")}`
+                              refStringTransformation
                             ),
                           },
                         },
