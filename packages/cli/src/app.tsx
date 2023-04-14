@@ -63,12 +63,12 @@ export default function App({
     };
   }, []);
 
-  useInput((input, key) => {
-    if (input === "q") {
-      // Exit program
-      process.exit();
-    }
-  });
+  // useInput((input, key) => {
+  //   if (input === "q") {
+  //     // Exit program
+  //     process.exit();
+  //   }
+  // });
 
   return (
     <Text>
