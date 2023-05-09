@@ -1,6 +1,6 @@
 {
   "name": "@eject/interface",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "type": "module",
   "exports": "./build/index.js",
   "types": "./build/index.d.ts",

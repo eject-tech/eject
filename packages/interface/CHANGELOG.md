@@ -1,5 +1,11 @@
 # @eject/interface
 
+## 1.7.1
+
+### Patch Changes
+
+- b4335c3: Updated Readme to include temporary content/summary for package
+
 ## 1.7.0
 
 ### Minor Changes

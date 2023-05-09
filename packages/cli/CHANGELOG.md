@@ -1,5 +1,11 @@
 # @eject/cli
 
+## 1.3.1
+
+### Patch Changes
+
+- b4335c3: Updated Readme to include temporary content/summary for package
+
 ## 1.3.0
 
 ### Minor Changes
