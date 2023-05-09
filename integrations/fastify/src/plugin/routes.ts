@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { fastifyPlugin } from "fastify-plugin";
-import { Dirent } from "fs";
+import { Dirent } from "node:fs";
 import { findFiles, getRouteInfoFromPath } from "../fileFunctions.js";
 
 export interface DirentWithPath extends Dirent {
@@ -53,15 +53,15 @@ export const importRoutes = async (
   // When API is ready, register our routes
   const promises = [];
   const routePath = options.dir;
-  try {
-    for await (const file of findFiles(routePath, ".js")) {
+  for await (const file of findFiles(routePath, ".js")) {
+    try {
       const plugin = await import(file.path);
       const routeInfo = getRouteInfoFromPath(file.path, routePath);
 
       promises.push(fastify.register(plugin, routeInfo));
+    } catch (error) {
+      // this.logger.error("Failed to resolve endpoint", error);
     }
-  } catch (error) {
-    // this.logger.error("Failed to resolve endpoint", error);
   }
 
   await Promise.all(promises);

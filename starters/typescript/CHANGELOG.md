@@ -1,5 +1,34 @@
 # @eject/typescript
 
+## 1.3.0
+
+### Minor Changes
+
+- 0fdbebc: CI fix for stdin input
+
+### Patch Changes
+
+- Updated dependencies [0fdbebc]
+  - @eject/fastify@1.4.0
+
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [944082c]
+  - @eject/fastify@1.3.0
+
+## 1.2.0
+
+### Minor Changes
+
+- fd04e4b: Added initial CLI support for Ejection
+
+### Patch Changes
+
+- Updated dependencies [fd04e4b]
+  - @eject/fastify@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

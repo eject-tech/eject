@@ -26,6 +26,8 @@ export class EjectInterfaceAPI {
     return this;
   }
 
+  close = () => this.ky.post("close").json<{ success: true }>();
+
   api = {
     get: (key: string) => this.ky.get(`api/${key}`).json<any>(),
     post: (info: Info) =>

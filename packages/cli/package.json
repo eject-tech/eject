@@ -1,13 +1,12 @@
 {
   "name": "@eject/cli",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "type": "module",
   "exports": "./build/cli.js",
   "types": "./build/cli.d.ts",
   "license": "MIT",
   "bin": {
-    "@eject/cli": "bin/eject",
-    "eject": "bin/eject"
+    "eject": "build/cli.js"
   },
   "files": [
     "build",
@@ -15,23 +14,42 @@
     "CHANGELOG.md",
     "README.md"
   ],
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && EJECT_INTERNAL_GENERATION=3734 node ./build/cli.js build",
     "dev": "tsc --watch",
-    "eject": "node ./build/cli.js"
+    "eject": "node ./build/cli.js",
+    "test": "ava"
+  },
+  "dependencies": {
+    "ink": "^4.1.0",
+    "meow": "^11.0.0",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
-    "soly": "^1.1.2"
-  },
-  "dependencies": {
+    "@types/react": "^18.0.32",
+    "ava": "^5.2.0",
+    "chalk": "^5.2.0",
+    "ink-testing-library": "^3.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.3",
     "@eject/fastify": "workspace:*",
     "@eject/interface": "workspace:*",
     "@fastify/type-provider-typebox": "^3.0.0",
     "@sinclair/typebox": "^0.26.8",
     "@types/node": "^18.15.11",
-    "chalk": "^5.2.0",
-    "fastify": "^4.15.0",
-    "typescript": "^5.0.3"
+    "fastify": "^4.15.0"
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module",
+      "tsx": "module"
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
+    ]
   }
 }

@@ -27,8 +27,6 @@ We're working on our broader documentation which will cover integration with exi
 
 Packages within this monorepo are separated into 4 categories; "packages", "integrations", "generators", and "starters"
 
-## Packages
-
 **Packages:**
 
 Core packages for Eject tooling.
@@ -75,7 +73,15 @@ To run this project locally we recommend the following steps:
 
 We welcome contributions to this project, please read our [contributing guidelines](./CONTRIBUTING.md) before submitting a pull request.
 
-Pull requests will require an accompanying [changeset](https://github.com/atlassian/changesets) to be added to the pull request. To add a changeset, run the following command:
+Pull requests will require an accompany [changeset](https://github.com/atlassian/changesets) to be added to the pull request. This will ensure that the correct version of the package is published. To add a changeset, run the following command:
+
+```bash
+pnpm changeset
+```
+
+If you wish to push a change which does not make any changes to the packages, you can add the `--empty` flag to the command above.
+
+## Tools
 
 ```bash
 pnpm changeset

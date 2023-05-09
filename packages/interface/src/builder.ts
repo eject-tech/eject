@@ -101,3 +101,7 @@ export class OpenAPIBuilder {
     return `#/components/${componentType}/${name}`;
   }
 }
+
+export const getAllBuilders: () => OpenAPIBuilder[] = () => {
+  return Object.keys(specifications).map((spec) => new OpenAPIBuilder(spec));
+};
