@@ -14,11 +14,7 @@ Want to know more about the Eject platform and how it can help you collaborative
 
 ## Eject Interface
 
-The Eject CLI is a command-line interface for developing and building Eject applications and publishing generated packages. Its goals are simple:
-
-- Make it easy to spin-up top quality APIs with any language and framework, via our stubs.
-- Provide a common interface for any language or framework to integrate with.
-- Simplify the process of generating and publishing packages, documentation, and specifications.
+The Eject interface provides a consistent approach for Eject applications to define their APIs, used primarily by the CLI the intention is that it can be utilised anywhere.
 
 ### Work in progress
 
