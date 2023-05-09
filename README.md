@@ -59,6 +59,8 @@ We aim to deliver on all of the following criteria with our starter kits:
 - **End-to-end type safety**: Where the language supports it, code should be type-safe.
 - **Full use of Eject features**: Integrating with all of Eject's features, such as versioning, validation, and more.
 
+Starter kits:
+
 - [TypeScript](./templates/typescript/): Stub for an Eject TypeScript project, the default when using `eject init`.
 
 ## Contributing
