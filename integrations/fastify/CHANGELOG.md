@@ -1,5 +1,13 @@
 # @eject/fastify
 
+## 1.4.1
+
+### Patch Changes
+
+- b4335c3: Updated Readme to include temporary content/summary for package
+- Updated dependencies [b4335c3]
+  - @eject/javascript-sdk@1.3.1
+
 ## 1.4.0
 
 ### Minor Changes
