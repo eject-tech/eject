@@ -8,7 +8,7 @@ export default {
       name: "OpenAPI Specification Generator",
       file: "./build/default-spec-generator.js",
       options: {
-        output: "eject-cli-spec.json",
+        output: "build/eject-cli-spec.json",
       },
     },
   ],
