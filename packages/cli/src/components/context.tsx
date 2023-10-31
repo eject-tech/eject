@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Text } from "ink";
+import { Text, useApp } from "ink";
 import Spinner from "ink-spinner";
 import { Layout } from "./layout.js";
 import { Loading } from "./loading.js";
@@ -19,12 +19,10 @@ import { cosmiconfig } from "cosmiconfig";
 
 import fs from "node:fs";
 import { getAllBuilders } from "@eject/interface";
-import childProcess from "node:child_process";
-import { promisify } from "node:util";
+import { execaCommand } from "execa";
 import { startEjectCLIAPI } from "../api/api.js";
 import { theme } from "../theme.js";
 import { Commands, Options } from "../cli.js";
-const exec = promisify(childProcess.exec);
 
 type ActionList = {
   key: string;
@@ -58,7 +56,8 @@ export const CLIContextProvider = ({
   options,
   command = "start",
 }: CLIProviderProps) => {
-  const [count, setCount] = useState<number>(0);
+  const { exit } = useApp();
+
   const api = useRef<EjectCLIAPI>();
   const [loading, setLoading] = useState<false | string>(false);
   const [actions, updateActions] = useState<CLIContext["actions"]>([
@@ -152,7 +151,7 @@ export const CLIContextProvider = ({
           message: "Configuration file is invalid: " + errors[0].message,
         });
 
-        return process.exit(1);
+        return exit();
       }
 
       // If the config is valid, set it
@@ -205,7 +204,7 @@ export const CLIContextProvider = ({
         // Trigger generators from here, pass the builder in to local state?
 
         if (command === "build") {
-          process.exit();
+          return exit();
         }
       });
 
@@ -231,11 +230,21 @@ export const CLIContextProvider = ({
       // This should run off config instead
       if (config.command.exec) {
         try {
-          const { stdout, stderr } = await exec(config.command.exec);
+          await execaCommand(config.command.exec);
           // TODO: surface logs to CLI tool
         } catch (e) {
-          // TODO: surface errors to CLI tool
-          console.error(e); // should contain code (exit code) and signal (that caused the termination).
+          let message = `${e}`;
+
+          if (e instanceof Error) {
+            message = e.message;
+          }
+
+          updateAction("api", {
+            state: "error",
+            message: `Failed to execute command "${config.command.exec}": with error ${message}`,
+          });
+
+          return exit();
         }
       }
     })();
@@ -269,7 +278,16 @@ export const CLIContextProvider = ({
                   </Text>
                 );
               case "success":
-                return <Text color={theme.colors.mint}>✓ {message}</Text>;
+                return (
+                  <Text
+                    color={theme.colors.mint}
+                    dimColor={actions
+                      .slice(actions.findIndex((a) => a.key === key))
+                      .some((a) => a.state !== "pending")}
+                  >
+                    ✓ {message}
+                  </Text>
+                );
               case "error":
                 return <Text color={theme.colors.crayola}>⨯ {message}</Text>;
             }
