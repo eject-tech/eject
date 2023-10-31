@@ -18,11 +18,12 @@ import {
 import { cosmiconfig } from "cosmiconfig";
 
 import fs from "node:fs";
-import { getAllBuilders } from "@eject/interface";
+import { getAllBuilders, OpenAPIBuilder } from "@eject/interface";
 import { execaCommand, ExecaChildProcess } from "execa";
 import { startEjectCLIAPI } from "../api/api.js";
 import { theme } from "../theme.js";
 import { Commands, Options } from "../cli.js";
+import path from "node:path";
 
 type ActionList = {
   key: string;
@@ -49,6 +50,12 @@ type CLIProviderProps = {
   children: React.ReactNode;
   options: Options;
   command: Commands;
+};
+
+type ResolvedGenerator = {
+  name: string;
+  generator: (builders: OpenAPIBuilder[]) => Promise<boolean>; //EjectGenerator;
+  options: Record<string, unknown>;
 };
 
 const initialActions = [
@@ -93,11 +100,13 @@ export const CLIContextProvider = ({
   const { exit } = useApp();
 
   const api = useRef<EjectCLIAPI>();
-  const process = useRef<ExecaChildProcess<string>>();
+  const clientProcess = useRef<ExecaChildProcess<string>>();
 
   const [loading, setLoading] = useState<false | string>(false);
   const [actions, updateActions] =
     useState<CLIContext["actions"]>(initialActions);
+
+  const [generators, setGenerators] = useState<ResolvedGenerator[]>([]);
 
   const updateAction = (
     key: string,
@@ -148,18 +157,73 @@ export const CLIContextProvider = ({
       if (errors.length > 0) {
         updateAction("config", {
           state: "error",
-          message: "Configuration file is invalid: " + errors[0].message,
+          message: `Configuration file is invalid: ${errors[0].path} ${errors[0].message}`,
         });
 
         return exit();
       }
 
-      // If the config is valid, set it
-      setConfig(combinedConfig);
-
       updateAction("config", {
         state: "success",
+        message: `Loaded configuration from ${configResult.filepath}`,
       });
+
+      // If there are generators, load them recursively
+      if (combinedConfig.generators) {
+        updateAction("loading-generators", {
+          state: "loading",
+          message: `Loading ${combinedConfig.generators.length} generator${
+            combinedConfig.generators.length === 0 ? "s" : ""
+          }`,
+        });
+
+        try {
+          const resolvedGenerators: ResolvedGenerator[] = await Promise.all(
+            combinedConfig.generators.map(async ({ name, file, options }) => {
+              const module = await import(path.join(process.cwd(), file));
+              const generator = module.default(options);
+
+              return { name, generator, options };
+            })
+          );
+
+          setGenerators(resolvedGenerators);
+        } catch (error) {
+          updateAction("loading-generators", {
+            state: "error",
+            message: `Failed to load generators: ${error}`,
+          });
+
+          return exit();
+        }
+
+        updateAction("loading-generators", {
+          state: "success",
+          message: `Loaded ${combinedConfig.generators.length} generator${
+            combinedConfig.generators.length === 0 ? "s" : ""
+          }`,
+        });
+
+        // Add an action for processing generators
+        updateActions((current) => [
+          ...current,
+          {
+            key: "generators",
+            state: "pending",
+            message: `Running ${combinedConfig.generators.length} generator${
+              combinedConfig.generators.length === 0 ? "s" : ""
+            }`,
+          },
+        ]);
+      } else {
+        updateAction("loading-generators", {
+          state: "success",
+          message: `Loaded 0 generators`,
+        });
+      }
+
+      // Set the config, which will trigger the next useEffect
+      setConfig(combinedConfig);
     })();
   }, []);
 
@@ -192,19 +256,42 @@ export const CLIContextProvider = ({
         });
       });
 
-      cliapi.addHook("onClose", () => {
-        // Write the API spec
-        const specs = getAllBuilders();
-
-        for (let specKey = 0; specKey < specs.length; specKey++) {
-          const spec = specs[specKey];
-          fs.writeFileSync(`eject-openapi-spec.3.1.0.json`, spec.print());
-        }
-
+      cliapi.addHook("onClose", async () => {
         updateAction("listening", {
           state: "success",
           message: `Received ${endpoints} endpoints`,
         });
+
+        // Run the generators
+        if (generators.length > 0) {
+          updateAction("generators", {
+            state: "loading",
+          });
+
+          try {
+            const results = await Promise.all(
+              generators.map(({ name, generator, options }) =>
+                generator(getAllBuilders())
+              )
+            );
+
+            const success = results.every((result) => result === true);
+
+            updateAction("generators", {
+              state: success ? "success" : "error",
+              message: `Ran ${generators.length} generator${
+                generators.length === 0 ? "s" : ""
+              }`,
+            });
+          } catch (error) {
+            updateAction("generators", {
+              state: "error",
+              message: `Failed to run generators: ${error}`,
+            });
+
+            return exit();
+          }
+        }
 
         // Trigger generators from here, pass the builder in to local state?
         if (command === "build") {
@@ -212,7 +299,7 @@ export const CLIContextProvider = ({
           cliapi.close();
 
           setTimeout(() => {
-            process.current?.kill("SIGTERM", {
+            clientProcess.current?.kill("SIGTERM", {
               forceKillAfterTimeout: 2000,
             });
           }, 1000);
@@ -249,7 +336,7 @@ export const CLIContextProvider = ({
         });
 
         const execaProcess = execaCommand(config.command.exec);
-        process.current = execaProcess;
+        clientProcess.current = execaProcess;
 
         // TODO: surface logs to CLI tool as per above comments
         execaProcess.stdout?.on("data", (data) => {

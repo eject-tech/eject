@@ -3,10 +3,13 @@ export default {
   command: {
     exec: "node ./build/eject.js",
   },
-  // generators: [
-  //   {
-  //     name: "eject-spec-generator",
-  //     file: "eject-spec-generator.js",
-  //   },
-  // ],
+  generators: [
+    {
+      name: "OpenAPI Specification Generator",
+      file: "./build/default-spec-generator.js",
+      options: {
+        output: "eject-cli-spec.json",
+      },
+    },
+  ],
 };
