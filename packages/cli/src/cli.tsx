@@ -63,6 +63,7 @@ ${Object.entries(options)
 });
 
 // Render ink app
+console.clear();
 render(<App command={cli.input[0] as Commands} options={cli.flags} />, {
   exitOnCtrlC: true,
 });

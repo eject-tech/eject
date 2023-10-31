@@ -1,5 +1,5 @@
 import { Box, Text } from "ink";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { theme } from "../theme.js";
 
 export type LayoutProps = {
@@ -7,8 +7,35 @@ export type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps) => {
+  const [size, setSize] = useState({
+    columns: process.stdout.columns,
+    rows: process.stdout.rows,
+  });
+
+  useEffect(() => {
+    function onResize() {
+      setSize({
+        columns: process.stdout.columns,
+        rows: process.stdout.rows,
+      });
+    }
+
+    process.stdout.on("resize", onResize);
+    process.stdout.write("\x1b[?1049h");
+    return () => {
+      process.stdout.off("resize", onResize);
+      process.stdout.write("\x1b[?1049l");
+    };
+  }, []);
+
   return (
-    <>
+    <Box
+      width="100%"
+      minHeight={size.rows}
+      paddingY={size.rows > 8 ? 1 : 0}
+      flexDirection="column"
+      flexGrow={1}
+    >
       <Text bold={true} color={theme.colors.crayola}>
         🔺 Eject CLI v{process.env.npm_package_version}
       </Text>
@@ -27,6 +54,6 @@ export const Layout = ({ children }: LayoutProps) => {
       >
         {children}
       </Box>
-    </>
+    </Box>
   );
 };

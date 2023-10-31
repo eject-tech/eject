@@ -19,7 +19,8 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "tsc && node ./build/cli.js build",
+    "build": "tsc && pnpm eject",
+    "eject": "node ./build/cli.js build",
     "dev": "tsc --watch",
     "test": "ava"
   },
