@@ -63,4 +63,6 @@ ${Object.entries(options)
 });
 
 // Render ink app
-render(<App command={cli.input[0] as Commands} options={cli.flags} />);
+render(<App command={cli.input[0] as Commands} options={cli.flags} />, {
+  exitOnCtrlC: true,
+});

@@ -19,7 +19,7 @@ import { cosmiconfig } from "cosmiconfig";
 
 import fs from "node:fs";
 import { getAllBuilders } from "@eject/interface";
-import { execaCommand } from "execa";
+import { execaCommand, ExecaChildProcess } from "execa";
 import { startEjectCLIAPI } from "../api/api.js";
 import { theme } from "../theme.js";
 import { Commands, Options } from "../cli.js";
@@ -51,6 +51,40 @@ type CLIProviderProps = {
   command: Commands;
 };
 
+const initialActions = [
+  {
+    key: "config",
+    state: "pending",
+    message: "Loading configuration",
+  },
+  {
+    key: "loading-generators",
+    state: "pending",
+    message: "Loading generators",
+  },
+  {
+    key: "api",
+    state: "pending",
+    message: "Starting Eject API",
+    // message: "Failed to start Eject API; port 3374 already in use",
+  },
+  {
+    key: "client",
+    state: "pending",
+    message: "Executing client command",
+  },
+  {
+    key: "listening",
+    state: "pending",
+    message: "Listening for initial specification details",
+  },
+  // {
+  //   key: "spec",
+  //   state: "pending",
+  //   message: "Generating initial OpenAPI specification",
+  // },
+] satisfies CLIContext["actions"];
+
 export const CLIContextProvider = ({
   children,
   options,
@@ -59,45 +93,11 @@ export const CLIContextProvider = ({
   const { exit } = useApp();
 
   const api = useRef<EjectCLIAPI>();
+  const process = useRef<ExecaChildProcess<string>>();
+
   const [loading, setLoading] = useState<false | string>(false);
-  const [actions, updateActions] = useState<CLIContext["actions"]>([
-    {
-      key: "config",
-      state: "pending",
-      message: "Loading configuration",
-    },
-    {
-      key: "loading-generators",
-      state: "pending",
-      message: "Loading generators",
-    },
-    {
-      key: "api",
-      state: "pending",
-      message: "Starting Eject API",
-      // message: "Failed to start Eject API; port 3374 already in use",
-    },
-    {
-      key: "listening",
-      state: "pending",
-      message: "Listening for initial specification details",
-    },
-    // {
-    //   key: "build",
-    //   state: "pending",
-    //   message: "Executing client build command",
-    // },
-    // {
-    //   key: "start",
-    //   state: "pending",
-    //   message: "Executing client start command",
-    // },
-    // {
-    //   key: "spec",
-    //   state: "pending",
-    //   message: "Generating initial OpenAPI specification",
-    // },
-  ]);
+  const [actions, updateActions] =
+    useState<CLIContext["actions"]>(initialActions);
 
   const updateAction = (
     key: string,
@@ -185,6 +185,11 @@ export const CLIContextProvider = ({
 
       cliapi.addHook("onResponse", (request, reply) => {
         endpoints += 1;
+
+        updateAction("listening", {
+          state: "loading",
+          message: `Processed ${endpoints} endpoints`,
+        });
       });
 
       cliapi.addHook("onClose", () => {
@@ -198,13 +203,19 @@ export const CLIContextProvider = ({
 
         updateAction("listening", {
           state: "success",
-          message: `Processed ${endpoints} endpoints`,
+          message: `Received ${endpoints} endpoints`,
         });
 
         // Trigger generators from here, pass the builder in to local state?
-
         if (command === "build") {
-          return exit();
+          // Manually close the API, and kill the spawned process
+          cliapi.close();
+
+          setTimeout(() => {
+            process.current?.kill("SIGTERM", {
+              forceKillAfterTimeout: 2000,
+            });
+          }, 1000);
         }
       });
 
@@ -229,39 +240,63 @@ export const CLIContextProvider = ({
 
       // This should run off config instead
       if (config.command.exec) {
-        try {
-          await execaCommand(config.command.exec);
-          // TODO: surface logs to CLI tool
-        } catch (e) {
+        // Instead of waiting for the entire process to finish, we should pipe it to a stream
+        // When that stream receives data, we should update our internal logging
+        // execaCommand(config.command.exec).pipeAll()
+
+        updateAction("client", {
+          state: "loading",
+        });
+
+        const execaProcess = execaCommand(config.command.exec);
+        process.current = execaProcess;
+
+        // TODO: surface logs to CLI tool as per above comments
+        execaProcess.stdout?.on("data", (data) => {
+          console.log("stdout", data.toString());
+        });
+
+        execaProcess.all?.on("data", (data) => {
+          console.log("all", data.toString());
+        });
+
+        execaProcess.then(() => {
+          updateAction("client", {
+            state: "success",
+          });
+        });
+
+        execaProcess.catch((e) => {
           let message = `${e}`;
 
           if (e instanceof Error) {
             message = e.message;
           }
 
-          updateAction("api", {
+          updateAction("client", {
             state: "error",
             message: `Failed to execute command "${config.command.exec}": with error ${message}`,
           });
 
           return exit();
-        }
+        });
       }
     })();
 
     return () => {
-      updateAction("api", {
-        state: "loading",
-      });
-
-      api.current?.close();
+      // Close the API
+      if (api.current) {
+        api.current.close();
+      }
     };
   }, [config]);
 
   if (actions.length > 0) {
     return (
       <Layout>
-        {actions.map(({ key, state, message }) => {
+        {actions.map(({ key, state, message }, index) => {
+          const nextActions = actions.slice(index + 1);
+
           const text = (() => {
             switch (state) {
               case "pending":
@@ -281,9 +316,10 @@ export const CLIContextProvider = ({
                 return (
                   <Text
                     color={theme.colors.mint}
-                    dimColor={actions
-                      .slice(actions.findIndex((a) => a.key === key))
-                      .some((a) => a.state !== "pending")}
+                    dimColor={
+                      !!nextActions.length &&
+                      nextActions.some((a) => a.state !== "pending")
+                    }
                   >
                     ✓ {message}
                   </Text>
