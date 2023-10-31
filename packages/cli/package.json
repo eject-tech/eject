@@ -19,9 +19,8 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "tsc && EJECT_INTERNAL_GENERATION=3734 node ./build/cli.js build",
+    "build": "tsc && node ./build/cli.js build",
     "dev": "tsc --watch",
-    "eject": "node ./build/cli.js",
     "test": "ava"
   },
   "dependencies": {

@@ -8,12 +8,20 @@ import { TSchema, Type } from "@sinclair/typebox";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+type EjectCLIAPIOptions = {
+  _internalGeneration?: number;
+};
+
+const ejectCLIAPIDefaults: EjectCLIAPIOptions = {};
+
 export const startEjectCLIAPI = async (
-  options: any = {} // TODO: How do we type this as fastify opts?
+  userOptions: EjectCLIAPIOptions = {}
 ) => {
+  const options = { ...ejectCLIAPIDefaults, ...userOptions };
+
   // Create Fastify application
   const api = fastify({
-    logger: true,
+    logger: false,
     ignoreTrailingSlash: true,
     ajv: {
       customOptions: {
@@ -21,7 +29,6 @@ export const startEjectCLIAPI = async (
         uriResolver: undefined,
       },
     },
-    ...options,
   }).withTypeProvider<TypeBoxTypeProvider>();
 
   // Add the schema refs to the API
@@ -34,11 +41,11 @@ export const startEjectCLIAPI = async (
   }
 
   // Build an API
-  if (process.env.EJECT_INTERNAL_GENERATION) {
+  if (options._internalGeneration) {
     await api.register(eject.ejectInterface, {
-      version: "0.0.1",
+      version: process.env.npm_package_version,
       title: "Eject Interface API",
-      ejectHost: `http://localhost:${process.env.EJECT_INTERNAL_GENERATION}`,
+      ejectHost: `http://localhost:${options._internalGeneration}`,
     });
   }
 

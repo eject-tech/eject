@@ -16,7 +16,7 @@ export default function App({
   options = { port: defaultPort },
 }: Props) {
   return (
-    <CLIContextProvider options={options}>
+    <CLIContextProvider options={options} command={command}>
       <Layout>
         <Text>Everything is running!</Text>
       </Layout>

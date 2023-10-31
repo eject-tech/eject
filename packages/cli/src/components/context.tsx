@@ -23,7 +23,7 @@ import childProcess from "node:child_process";
 import { promisify } from "node:util";
 import { startEjectCLIAPI } from "../api/api.js";
 import { theme } from "../theme.js";
-import { Options } from "../cli.js";
+import { Commands, Options } from "../cli.js";
 const exec = promisify(childProcess.exec);
 
 type ActionList = {
@@ -50,9 +50,14 @@ export const useCLIContext = () => useContext(CLIContext);
 type CLIProviderProps = {
   children: React.ReactNode;
   options: Options;
+  command: Commands;
 };
 
-export const CLIContextProvider = ({ children, options }: CLIProviderProps) => {
+export const CLIContextProvider = ({
+  children,
+  options,
+  command = "start",
+}: CLIProviderProps) => {
   const [count, setCount] = useState<number>(0);
   const api = useRef<EjectCLIAPI>();
   const [loading, setLoading] = useState<false | string>(false);
@@ -170,7 +175,7 @@ export const CLIContextProvider = ({ children, options }: CLIProviderProps) => {
         state: "loading",
       });
 
-      const cliapi = await startEjectCLIAPI({ logger: false });
+      const cliapi = await startEjectCLIAPI();
       api.current = cliapi;
 
       updateAction("listening", {
@@ -199,12 +204,25 @@ export const CLIContextProvider = ({ children, options }: CLIProviderProps) => {
 
         // Trigger generators from here, pass the builder in to local state?
 
-        // if (command === "build") {
-        //   process.exit();
-        // }
+        if (command === "build") {
+          process.exit();
+        }
       });
 
-      await cliapi.listen({ port: config.port });
+      try {
+        await cliapi.listen({ port: config.port });
+      } catch (error: unknown) {
+        let message = `${error}`;
+
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        updateAction("api", {
+          state: "error",
+          message: `Failed to start Eject API; ${message}`,
+        });
+      }
 
       updateAction("api", {
         state: "success",

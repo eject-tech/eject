@@ -5,7 +5,7 @@ import meow from "meow";
 import App from "./app.js";
 
 export const commands = [
-  ["start", "Start the development server"],
+  ["start", "Start the development server in watch mode"],
   ["build", "Generate packages and specifications for production"],
 ] as const;
 
