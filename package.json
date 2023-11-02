@@ -15,7 +15,9 @@
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "pnpm -w exec changeset",
-    "release": "pnpm -w exec changeset version"
+    "release": "pnpm -w exec changeset version",
+    "cli": "pnpm --filter=@eject/cli",
+    "starter": "pnpm --filter=@eject/typescript-starter"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",

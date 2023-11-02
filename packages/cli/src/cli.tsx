@@ -5,7 +5,7 @@ import meow from "meow";
 import App from "./app.js";
 
 export const commands = [
-  ["start", "Start the development server"],
+  ["start", "Start the development server in watch mode"],
   ["build", "Generate packages and specifications for production"],
 ] as const;
 
@@ -35,46 +35,35 @@ export type Options = {
   exec?: string;
 };
 
-const cli = meow(
-  `
-  Usage
-	  $ eject
+const cli = meow({
+  help: `Usage
+	$ eject
 
-	Commands
+Commands
 ${commands
-  .map(([command, description]) => `    ${command.padEnd(12)} ${description}`)
+  .map(([command, description]) => `  ${command.padEnd(12)} ${description}`)
   .join("\n")}
 
   Options
 ${Object.entries(options)
   .map(
     ([option, { description, flag }]) =>
-      `    --${(option + (flag.alias ? `, -${flag.alias}` : "")).padEnd(
+      `  --${(option + (flag.alias ? `, -${flag.alias}` : "")).padEnd(
         10
       )} ${description}`
   )
   .join("\n")}
 `,
-  {
-    importMeta: import.meta,
-    flags: {
-      port: {
-        type: "number",
-        default: 3734,
-      },
-      exec: {
-        type: "string",
-      },
-    },
-  }
-);
-
-if (
-  commands.map<string>(([command]) => command).includes(cli.input[0]) === false
-) {
-  console.log(`  Unknown command\n`, cli.help);
-  process.exit();
-}
+  importMeta: import.meta,
+  flags: {
+    ...Object.fromEntries(
+      Object.entries(options).map(([option, { flag }]) => [option, flag])
+    ),
+  },
+});
 
 // Render ink app
-render(<App command={cli.input[0] as Commands} options={cli.flags} />);
+console.clear();
+render(<App command={cli.input[0] as Commands} options={cli.flags} />, {
+  exitOnCtrlC: true,
+});
