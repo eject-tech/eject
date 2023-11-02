@@ -43,7 +43,7 @@ export const startEjectCLIAPI = async (
   // Build an API
   if (options._internalGeneration) {
     await api.register(eject.ejectInterface, {
-      version: process.env.npm_package_version,
+      version: process.env.npm_package_version || "unknown",
       title: "Eject Interface API",
       ejectHost: `http://localhost:${options._internalGeneration}`,
     });
