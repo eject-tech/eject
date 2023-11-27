@@ -1,4 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
+import { serverVariable } from "./serverVariable.js";
 
 export const server = Type.Object(
   {
@@ -7,18 +8,12 @@ export const server = Type.Object(
     variables: Type.Optional(
       Type.Record(
         Type.String({ title: "Variable Name" }),
-        Type.Object({
-          enum: Type.Array(Type.String({ title: "Variable Enum" })),
-          default: Type.Optional(Type.String({ title: "Variable Default" })),
-          description: Type.Optional(
-            Type.String({ title: "Variable Description" })
-          ),
-        })
+        Type.Ref(serverVariable)
       )
     ),
   },
   {
-    $id: "#server",
+    $id: "#/$defs/server",
     title: "Server Variables",
   }
 );

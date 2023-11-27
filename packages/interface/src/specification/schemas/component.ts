@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { callback } from "./callback.js";
+import { callbacks } from "./callbacks.js";
 import { example } from "./example.js";
 import { header } from "./header.js";
 import { link } from "./link.js";
@@ -28,7 +28,7 @@ export const componentType = Type.Union(
     Type.Literal("pathItem"),
   ],
   {
-    $id: "#componentType",
+    $id: "#/$defs/componentType",
     title: "Component Type",
   }
 );
@@ -43,7 +43,7 @@ export const requestBodyComponent = Type.Ref(requestBody);
 export const headerComponent = Type.Ref(header);
 export const securitySchemeComponent = Type.Ref(securityScheme);
 export const linkComponent = Type.Ref(link);
-export const callbackComponent = Type.Ref(callback);
+export const callbackComponent = Type.Ref(callbacks);
 export const pathItemComponent = Type.Ref(pathItem);
 
 export type SchemasComponent = Static<typeof schemaComponent>;
@@ -73,7 +73,7 @@ export const component = Type.Union([
 export type Component = Static<typeof component>;
 
 export const componentName = Type.String({
-  $id: "#componentName",
+  $id: "#/$defs/componentName",
   format: "regex",
   pattern: "^[a-zA-Z0-9\\-\\.]+$",
 });
@@ -97,7 +97,10 @@ export const components = Type.Object(
     callbacks: Type.Optional(Type.Record(componentName, callbackComponent)),
     pathItems: Type.Optional(Type.Record(componentName, pathItemComponent)),
   },
-  { $id: "#components", title: "Components" }
+  {
+    $id: "#/$defs/components",
+    title: "Components",
+  }
 );
 
 export type Components = Static<typeof components>;

@@ -6,7 +6,7 @@ import { ref } from "./ref.js";
 import { server } from "./server.js";
 
 export const pathItemName = Type.String({
-  $id: "#pathItemName",
+  $id: "#/$defs/pathItemName",
   title: "Path URI",
 });
 
@@ -31,7 +31,16 @@ export const pathItem = Type.Intersect(
     }),
     pathItemOperations,
   ],
-  { $id: "#pathItem" }
+  { $id: "#/$defs/pathItem" }
 );
 
 export type PathItem = Static<typeof pathItem>;
+
+export const pathItemOrReference = Type.Union(
+  [Type.Ref(pathItem), Type.Ref(ref)],
+  {
+    $id: "#/$defs/path-item-or-reference",
+  }
+);
+
+export type PathItemOrReference = Static<typeof pathItemOrReference>;

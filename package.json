@@ -17,6 +17,7 @@
     "changeset": "pnpm -w exec changeset",
     "release": "pnpm -w exec changeset version",
     "cli": "pnpm --filter=@eject/cli",
+    "interface": "pnpm --filter=@eject/interface",
     "starter": "pnpm --filter=@eject/typescript-starter"
   },
   "devDependencies": {

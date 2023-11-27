@@ -1,5 +1,6 @@
 import { Type, Static } from "@sinclair/typebox";
 import { type } from "os";
+import { ref } from "./ref.js";
 
 export const securitySchemeType = Type.Union(
   [
@@ -8,13 +9,13 @@ export const securitySchemeType = Type.Union(
     Type.Literal("oauth2"),
     Type.Literal("openIdConnect"),
   ],
-  { $id: "#securitySchemeType" }
+  { $id: "#/$defs/securitySchemeType" }
 );
 
 export type SecuritySchemeType = Static<typeof securitySchemeType>;
 
 export const securitySchemeName = Type.String({
-  $id: "#securitySchemeName",
+  $id: "#/$defs/securitySchemeName",
   title: "Security Scheme Name",
 });
 
@@ -29,7 +30,7 @@ export const apiKeySecuritySchema = Type.Object(
       Type.Literal("cookie"),
     ]),
   },
-  { $id: "#apiKeySecuritySchema" }
+  { $id: "#/$defs/apiKeySecuritySchema" }
 );
 
 export type ApiKeySecuritySchema = Static<typeof apiKeySecuritySchema>;
@@ -51,7 +52,7 @@ export const httpSecurityScheme = Type.Object(
     ]),
     bearerFormat: Type.Optional(Type.String({ title: "Bearer Format" })), // TODO: Should also be conditional on scheme being "bearer"
   },
-  { $id: "#httpSecurityScheme" }
+  { $id: "#/$defs/httpSecurityScheme" }
 );
 
 export type HttpSecurityScheme = Static<typeof httpSecurityScheme>;
@@ -105,7 +106,7 @@ export const oauthSecurityScheme = Type.Object(
       ),
     }),
   },
-  { $id: "#oauthSecurityScheme" }
+  { $id: "#/$defs/oauthSecurityScheme" }
 );
 
 export type OauthSecurityScheme = Static<typeof oauthSecurityScheme>;
@@ -118,7 +119,7 @@ export const openIdConnectSecurityScheme = Type.Object(
       format: "uri",
     }),
   },
-  { $id: "#openIdConnectSecurityScheme" }
+  { $id: "#/$defs/openIdConnectSecurityScheme" }
 );
 
 export type OpenIdConnectSecurityScheme = Static<
@@ -130,7 +131,7 @@ export const securitySchemeBase = Type.Object(
     type: securitySchemeType,
     description: Type.Optional(Type.String({ title: "Description" })),
   },
-  { $id: "#securitySchemeBase" }
+  { $id: "#/$defs/securitySchemeBase" }
 );
 
 export type SecuritySchemeBase = Static<typeof securitySchemeBase>;
@@ -145,7 +146,18 @@ export const securityScheme = Type.Union(
       openIdConnectSecurityScheme,
     ]),
   ],
-  { $id: "#securityScheme" }
+  { $id: "#/$defs/securityScheme" }
 );
 
 export type SecurityScheme = Static<typeof securityScheme>;
+
+export const securitySchemeOrReference = Type.Union(
+  [Type.Ref(securityScheme), Type.Ref(ref)],
+  {
+    $id: "#/$defs/securitySchemeOrReference",
+  }
+);
+
+export type SecuritySchemeOrReference = Static<
+  typeof securitySchemeOrReference
+>;

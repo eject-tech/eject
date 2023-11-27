@@ -7,7 +7,7 @@ export const ref = Type.Object(
     description: Type.Optional(Type.String({ title: "Description" })),
   },
   {
-    $id: "#reference",
+    $id: "#/$defs/reference",
     title: "Reference",
     additionalProperties: false,
   }

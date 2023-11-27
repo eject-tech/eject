@@ -5,7 +5,7 @@ import { ref } from "./ref.js";
 import { schema } from "./schema.js";
 
 export const mediaTypeKey = Type.String({
-  $id: "#mediaTypeKey",
+  $id: "#/$defs/mediaTypeKey",
   title: "Media Type",
   format: "media-type",
 });
@@ -21,7 +21,7 @@ export const mediaType = Type.Object(
     ),
     encoding: Type.Optional(Type.Record(Type.String(), Type.Ref(encoding))),
   },
-  { $id: "#mediaType" }
+  { $id: "#/$defs/mediaType" }
 );
 
 export type MediaType = Static<typeof mediaType>;

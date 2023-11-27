@@ -1,5 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
-import { callback } from "./callback.js";
+import { callbacks } from "./callbacks.js";
 import { externalDoc } from "./externalDoc.js";
 import { schemaParameter } from "./parameter.js";
 import { ref } from "./ref.js";
@@ -30,7 +30,7 @@ export const operation = Type.Object(
     security: Type.Optional(Type.Ref(security)),
     servers: Type.Optional(Type.Array(Type.Ref(server))),
   },
-  { $id: "#operation" }
+  { $id: "#/$defs/operation" }
 );
 
 export type Operation = Static<typeof operation>;

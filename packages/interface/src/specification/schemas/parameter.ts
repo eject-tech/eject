@@ -3,6 +3,7 @@ import { example } from "./example.js";
 import { mediaType, mediaTypeKey } from "./mediaType.js";
 import { ref } from "./ref.js";
 import { schema } from "./schema.js";
+import { content } from "./content.js";
 
 export const headerParameterBase = Type.Object(
   {
@@ -19,7 +20,7 @@ export const headerParameterBase = Type.Object(
       Type.Array(Type.Union([Type.Ref(example), Type.Ref(ref)]))
     ),
   },
-  { $id: "#headerParameterBase" }
+  { $id: "#/$defs/headerParameterBase" }
 );
 
 export type HeaderParameterBase = Static<typeof headerParameterBase>;
@@ -37,7 +38,7 @@ export const parameterBase = Type.Intersect(
     }),
     headerParameterBase,
   ],
-  { $id: "#parameterBase" }
+  { $id: "#/$defs/parameterBase" }
 );
 
 export type ParameterBase = Static<typeof parameterBase>;
@@ -61,7 +62,7 @@ export const schemaParameter = Type.Intersect(
       ),
     }),
   ],
-  { $id: "#schemaParameter" }
+  { $id: "#/$defs/schemaParameter" }
 );
 
 export type schemaParameter = Static<typeof schemaParameter>;
@@ -73,10 +74,17 @@ export const parameter = Type.Intersect(
   [
     parameterBase,
     Type.Object({
-      content: Type.Record(mediaTypeKey, Type.Ref(mediaType)),
+      content: Type.Ref(content),
     }),
   ],
-  { $id: "#parameter" }
+  { $id: "#/$defs/parameter" }
 );
 
 export type Parameter = Static<typeof parameter>;
+
+export const parameterOrReference = Type.Union(
+  [Type.Ref(parameter), Type.Ref(ref)],
+  { $id: "#/$defs/parameterOrReference" }
+);
+
+export type ParameterOrReference = Static<typeof parameterOrReference>;

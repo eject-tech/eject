@@ -9,7 +9,16 @@ export const header = Type.Intersect(
     //     content: mediaType,
     //   }),
   ],
-  { $id: "#header" }
+  { $id: "#/$defs/header" }
 );
 
 export type Header = Static<typeof header>;
+
+export const headerOrReference = Type.Union(
+  [Type.Ref(header), Type.Ref("#/$defs/header")],
+  {
+    $id: "#/$defs/header-or-reference",
+  }
+);
+
+export type HeaderOrReference = Static<typeof headerOrReference>;

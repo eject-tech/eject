@@ -11,7 +11,7 @@ export const method = Type.Union(
     Type.Literal("patch"),
     Type.Literal("trace"),
   ],
-  { $id: "#method" }
+  { $id: "#/$defs/method" }
 );
 
 export type Method = Static<typeof method>;

@@ -1,4 +1,4 @@
-export * from "./schemas/callback.js";
+export * from "./schemas/callbacks.js";
 export * from "./schemas/component.js";
 export * from "./schemas/contact.js";
 export * from "./schemas/encoding.js";
@@ -21,6 +21,6 @@ export * from "./schemas/schema.js";
 export * from "./schemas/security.js";
 export * from "./schemas/securityScheme.js";
 export * from "./schemas/server.js";
-export * from "./schemas/tags.js";
+export * from "./schemas/tag.js";
 
 export * from "./spec.js";

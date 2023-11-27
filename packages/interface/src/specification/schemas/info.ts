@@ -6,6 +6,7 @@ export const info = Type.Object(
   {
     version: Type.String({ title: "API Version" }),
     title: Type.String({ title: "API Title" }),
+    summary: Type.Optional(Type.String({ title: "API Summary" })),
     description: Type.Optional(Type.String({ title: "API Description" })),
     termsOfService: Type.Optional(
       Type.String({ title: "API Terms of Service", format: "uri" })
@@ -14,7 +15,7 @@ export const info = Type.Object(
     license: Type.Optional(Type.Ref(license)),
   },
   {
-    $id: "#info",
+    $id: "#/$defs/info",
     title: "API Information",
     additionalProperties: false,
   }
