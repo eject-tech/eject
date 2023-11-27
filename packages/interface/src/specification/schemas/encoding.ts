@@ -13,7 +13,7 @@ export const encoding = Type.Object(
     explode: Type.Optional(Type.Boolean({ title: "Explode" })),
     allowReserved: Type.Optional(Type.Boolean({ title: "Allow Reserved" })),
   },
-  { $id: "#encoding" }
+  { $id: "#/$defs/encoding" }
 );
 
 export type Encoding = Static<typeof encoding>;

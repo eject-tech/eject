@@ -65,6 +65,10 @@ export class OpenAPIBuilder {
     routeMethod: Static<typeof schema.method>,
     details?: Static<typeof schema.operation>
   ) {
+    if (!this.specification.paths) {
+      this.specification.paths = {};
+    }
+
     if (!this.specification.paths[url]) {
       this.specification.paths[url] = {};
     }

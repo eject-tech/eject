@@ -1,6 +1,7 @@
 import { Type, Static } from "@sinclair/typebox";
 import { expression } from "./expression.js";
 import { server } from "./server.js";
+import { ref } from "./ref.js";
 
 export const link = Type.Object(
   {
@@ -20,7 +21,13 @@ export const link = Type.Object(
     description: Type.Optional(Type.String({ title: "Description" })),
     server: Type.Optional(Type.Ref(server)),
   },
-  { $id: "#link" }
+  { $id: "#/$defs/link" }
 );
 
 export type Link = Static<typeof link>;
+
+export const linkOrReference = Type.Union([Type.Ref(link), Type.Ref(ref)], {
+  $id: "#/$defs/link-or-reference",
+});
+
+export type LinkOrReference = Static<typeof linkOrReference>;

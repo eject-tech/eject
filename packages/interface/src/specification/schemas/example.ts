@@ -1,4 +1,5 @@
 import { Type, Static } from "@sinclair/typebox";
+import { ref } from "./ref.js";
 
 export const example = Type.Object(
   {
@@ -7,7 +8,14 @@ export const example = Type.Object(
     value: Type.Optional(Type.Any({ title: "Value" })),
     externalValue: Type.Optional(Type.String({ title: "External Value" })),
   },
-  { $id: "#example" }
+  { $id: "#/$defs/example" }
 );
 
 export type Example = Static<typeof example>;
+
+export const exampleOrReference = Type.Union(
+  [Type.Ref(example), Type.Ref(ref)],
+  { $id: "#/$defs/example-or-reference" }
+);
+
+export type ExampleOrReference = Static<typeof exampleOrReference>;

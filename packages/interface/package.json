@@ -17,22 +17,25 @@
     "test": "c8 ava"
   },
   "dependencies": {
-    "@sinclair/typebox": "^0.26.8",
+    "@sinclair/typebox": "^0.31.28",
     "@types/node": "^18.15.11"
   },
   "devDependencies": {
     "@eject/config": "workspace:*",
     "ava": "^5.2.0",
     "c8": "^7.13.0",
+    "ts-paths-esm-loader": "^1.4.3",
     "typescript": "^5.0.3"
   },
   "ava": {
-    "verbose": true,
-    "typescript": {
-      "rewritePaths": {
-        "src/": "build/"
-      },
-      "compile": false
-    }
+    "verbose": false,
+    "nodeArguments": [
+      "--loader=ts-paths-esm-loader"
+    ],
+    "extensions": {
+      "ts": "module",
+      "tsx": "module"
+    },
+    "timeout": "2m"
   }
 }
