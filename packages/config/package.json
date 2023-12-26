@@ -8,7 +8,7 @@
     "base.tsconfig.json"
   ],
   "dependencies": {
-    "eslint-config-next": "^13.2.4",
+    "eslint-config-next": "^14.0.0",
     "eslint-config-prettier": "^8.8.0"
   }
 }
