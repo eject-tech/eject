@@ -30,8 +30,8 @@ importers:
         specifier: ^0.26.8
         version: 0.26.8
       '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
+        specifier: ^20.0.0
+        version: 20.10.5
       fastify:
         specifier: ^4.15.0
         version: 4.15.0
@@ -111,8 +111,8 @@ importers:
         specifier: ^0.26.8
         version: 0.26.8
       '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
+        specifier: ^20.0.0
+        version: 20.10.5
       '@types/react':
         specifier: ^18.0.32
         version: 18.0.32
@@ -130,7 +130,7 @@ importers:
         version: 3.0.0(@types/react@18.0.32)
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.1(@types/node@18.15.11)(typescript@5.0.3)
+        version: 10.9.1(@types/node@20.10.5)(typescript@5.0.3)
       typescript:
         specifier: ^5.0.3
         version: 5.0.3
@@ -150,8 +150,8 @@ importers:
         specifier: ^0.26.8
         version: 0.26.8
       '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
+        specifier: ^20.0.0
+        version: 20.10.5
     devDependencies:
       '@eject/config':
         specifier: workspace:*
@@ -178,8 +178,8 @@ importers:
         specifier: ^0.26.8
         version: 0.26.8
       '@types/node':
-        specifier: ^18.15.11
-        version: 18.15.11
+        specifier: ^20.0.0
+        version: 20.10.5
       fastify:
         specifier: ^4.15.0
         version: 4.15.0
@@ -634,8 +634,10 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@18.15.11:
-    resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
+  /@types/node@20.10.5:
+    resolution: {integrity: sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==}
+    dependencies:
+      undici-types: 5.26.5
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -4075,7 +4077,7 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /ts-node@10.9.1(@types/node@18.15.11)(typescript@5.0.3):
+  /ts-node@10.9.1(@types/node@20.10.5)(typescript@5.0.3):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -4094,7 +4096,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.15.11
+      '@types/node': 20.10.5
       acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -4269,6 +4271,9 @@ packages:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
+
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
   /universalify@0.1.2:
     resolution: {integrity: sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==}
