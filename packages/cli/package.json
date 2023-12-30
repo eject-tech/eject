@@ -31,7 +31,7 @@
   "devDependencies": {
     "@eject/config": "workspace:*",
     "@types/react": "^18.0.32",
-    "ava": "^5.2.0",
+    "ava": "^6.0.0",
     "chalk": "^5.2.0",
     "ink-testing-library": "^3.0.0",
     "ts-node": "^10.9.1",
