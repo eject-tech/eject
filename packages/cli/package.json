@@ -38,7 +38,7 @@
     "typescript": "^5.0.3",
     "@eject/fastify": "workspace:*",
     "@eject/interface": "workspace:*",
-    "@fastify/type-provider-typebox": "^3.0.0",
+    "@fastify/type-provider-typebox": "^4.0.0",
     "@sinclair/typebox": "^0.26.8",
     "@types/node": "^18.15.11",
     "fastify": "^4.15.0"
