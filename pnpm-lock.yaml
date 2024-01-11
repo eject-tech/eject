@@ -24,8 +24,8 @@ importers:
         specifier: workspace:*
         version: link:../javascript
       '@fastify/type-provider-typebox':
-        specifier: ^3.0.0
-        version: 3.0.0(fastify@4.15.0)
+        specifier: ^4.0.0
+        version: 4.0.0(@sinclair/typebox@0.26.8)
       '@sinclair/typebox':
         specifier: ^0.26.8
         version: 0.26.8
@@ -105,8 +105,8 @@ importers:
         specifier: workspace:*
         version: link:../interface
       '@fastify/type-provider-typebox':
-        specifier: ^3.0.0
-        version: 3.0.0(fastify@4.15.0)
+        specifier: ^4.0.0
+        version: 4.0.0(@sinclair/typebox@0.26.8)
       '@sinclair/typebox':
         specifier: ^0.26.8
         version: 0.26.8
@@ -172,8 +172,8 @@ importers:
         specifier: workspace:*
         version: link:../../integrations/fastify
       '@fastify/type-provider-typebox':
-        specifier: ^3.0.0
-        version: 3.0.0(fastify@4.15.0)
+        specifier: ^4.0.0
+        version: 4.0.0(@sinclair/typebox@0.26.8)
       '@sinclair/typebox':
         specifier: ^0.26.8
         version: 0.26.8
@@ -478,13 +478,12 @@ packages:
     dependencies:
       fast-json-stringify: 5.6.2
 
-  /@fastify/type-provider-typebox@3.0.0(fastify@4.15.0):
-    resolution: {integrity: sha512-VVYY/ZcPSFElLtRYboA2bmFxoINGDqmmqJ8Ch8+2lvmc+XFCsOJ714SEOpgshC4n52KBclgQxf2O80NeEAN7gQ==}
+  /@fastify/type-provider-typebox@4.0.0(@sinclair/typebox@0.26.8):
+    resolution: {integrity: sha512-kTlN0saC/+xhcQPyBjb3YONQAMjiD/EHlCRjQjsr5E3NFjS5K8ZX5LGzXYDRjSa+sV4y8gTL5Q7FlObePv4iTA==}
     peerDependencies:
-      fastify: ^4.0.0
+      '@sinclair/typebox': '>=0.26 <=0.32'
     dependencies:
       '@sinclair/typebox': 0.26.8
-      fastify: 4.15.0
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
