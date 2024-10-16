@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@eject/interface": "workspace:*",
-    "ky-universal": "^0.11.0"
+    "ky-universal": "^0.12.0"
   },
   "devDependencies": {
     "@ava/typescript": "^4.0.0",
