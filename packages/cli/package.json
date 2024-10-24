@@ -39,7 +39,7 @@
     "@eject/fastify": "workspace:*",
     "@eject/interface": "workspace:*",
     "@fastify/type-provider-typebox": "^3.0.0",
-    "@sinclair/typebox": "^0.26.8",
+    "@sinclair/typebox": "^0.33.0",
     "@types/node": "^18.15.11",
     "fastify": "^4.15.0"
   },
